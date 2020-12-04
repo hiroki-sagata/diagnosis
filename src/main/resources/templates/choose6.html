@@ -1,0 +1,89 @@
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職業診断</title>
+    <link th:href="@{/css/all.css}" rel="stylesheet">
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+
+</head>
+<body>
+    <!-- ヘッダーのフラグメントを挿入 -->
+    <div th:include="header :: header_part"></div>
+    <div class="choose">
+        <p>Q1</p>
+        <div class="choose-question">
+            <h1>ひとつのことをとことん研究するのが好き</h1>
+        </div>
+        
+        <form action="/answer" method="post" class="choose-question-answer">　
+            <input type="hidden" name="sheet-point1" th:value="${sp1}"> 
+            <input type="hidden" name="sheet-point2" th:value="${sp2}"> 
+            <input type="hidden" name="sheet-point3" th:value="${sp3}"> 
+            <input type="hidden" name="sheet-point4" th:value="${sp4}"> 
+            <input type="hidden" name="sheet-point5" th:value="${sp5}"> 
+            <input type="radio" name="answer6-1" value=1> <label>はい</label>
+            <input type="radio" name="answer6-1" value=0> <label>いいえ</label>
+
+        <p>Q2</p>
+        <div class="choose-question">
+            <h1>誰も知らない新しい事実を発見したい</h1>
+        </div>
+            <input type="radio" name="answer6-2" value=1> <label>はい</label>
+            <input type="radio" name="answer6-2" value=0> <label>いいえ</label>
+       
+
+        <p>Q3</p>
+        <div class="choose-question">
+            <h1>昔から、理数系の勉強は得意だった</h1>
+        </div>
+            <input type="radio" name="answer6-3" value=1> <label>はい</label>
+            <input type="radio" name="answer6-3" value=0> <label>いいえ</label>
+     
+
+        <p>Q4</p>
+        <div class="choose-question">
+            <h1>「もし〜なものが会ったら」とよく考える</h1>
+        </div>　
+            <input type="radio" name="answer6-4" value=1> <label>はい</label>
+            <input type="radio" name="answer6-4" value=0> <label>いいえ</label>
+            
+
+        <p>Q5</p>
+        <div class="choose-question">
+            <h1>自分の価値を実証してみたい</h1>
+        </div>
+            <input type="radio" name="answer6-5" value=1> <label>はい</label>
+            <input type="radio" name="answer6-5" value=0> <label>いいえ</label>
+        
+        
+        <p>Q6</p>
+        <div class="choose-question">
+            <h1>正直、〇〇オタクと呼べるかも</h1>
+        </div>
+            <input type="radio" name="answer6-6" value=1> <label>はい</label>
+            <input type="radio" name="answer6-6" value=0> <label>いいえ</label>
+           
+        
+        
+        <p>Q7</p>
+        <div class="choose-question">
+            <h1>ひとりで考える時間は必ず確保したい</h1>
+        </div>
+            <input type="radio" name="answer6-7" value=1> <label>はい</label>
+            <input type="radio" name="answer6-7" value=0> <label>いいえ</label>
+     		
+     		<p>間違いがなければ送信ボタンを押して次の質問へ！</p>
+     		<input type="submit" value="送信">
+       
+        </form>
+
+
+
+
+    </div>
+     <!-- フッターのフラグメントを挿入 -->
+	  <div th:include="header :: footer_part">   
+</body>
+</html>

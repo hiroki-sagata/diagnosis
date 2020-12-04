@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職業診断</title>
+    <link th:href="@{/css/all.css}" rel="stylesheet">
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+  
+    
+</head>
+
+<body>
+    <!-- ヘッダーのフラグメントを挿入 -->
+    <div th:include="header :: header_part"></div>
+    <div class="home">
+        <h2>やりたい仕事<br>      きっと見つかる</h2>
+    </div>
+    <div class="start-button">
+        <a href="/choose">診断を始める</a>
+    </div>
+    <!-- フッターのフラグメントを挿入 -->
+    <div th:include="header :: footer_part">
+	
+
+
+</body>
+</html>

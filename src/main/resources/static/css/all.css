@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+/* ホーム画面　診断スタートボタン */
+.home{
+    background-image:url("../image/home.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    height:80vh;
+    
+}   
+
+.home h2 {
+    color:white;
+    text-align: right;
+    transform: translate(-30px,50vh);
+}
+li {
+	list-style:none;
+}
+
+.start-button {
+background-color: rgb(231, 18, 100);
+padding:25px;
+margin: 20px auto;
+width:20%;
+text-align:center;
+border-radius:20px;
+margin-bottom: 100px;
+}
+.start-button a{
+    text-decoration:none;
+    color:white;
+    font-size: large;
+    
+}
+/* ホーム画面はここまで */
+
+/* 診断内容  診断のクエスチョン*/
+
+.choose{
+    text-align:center;
+}
+.choose h1{
+
+}
+.choose p {
+    background-color:yellow;
+    width:60vw;
+    margin:auto;
+
+}
+.choose-question{
+    margin: 50px;
+}
+.choose-question-answer{
+
+    padding-bottom: 40px;
+}
+
+
+
+
+
+
+
+
+/* 診断結果 */
+.answer{
+    display:flex;
+}
+.answer img{
+    width: 40%;
+    height:auto;
+}
+.coment{
+text-align: justify;
+width: 50%;
+}
+.coment h1{
+    background-color:rgb(243, 243, 128);
+    border-radius:20px;
+}
+.Recommended{
+    text-align:center;
+}
+.Recommended li{
+    list-style:none;
+    padding:40px;
+}
+.Recommended a{
+    margin:20px;
+}
+/* ここからが２カラム */
+article{
+	width:74%;
+}
+aside{
+	width:26%;
+	border: 5px solid blue;
+}
+.Recommended{
+	display:flex;
+	justify-content:space-between;
+	margin-bottom:40px;
+}
+.Recommended a{
+	text-decoration:none;
+	
+}
+/* ーーーーーーーここからVIDEOーーーーーーー */
+.video {
+	background-color: gray;
+}
+.video h1 {
+	color:white;
+}
+.video section{
+	margin-bottom:30px;
+}
+.box1 {
+	display:flex;
+}
+.sankou{
+	background-color: orange;
+	text-align:center;
+	width:40%;
+	height:180px;
+	margin:auto;
+	margin-bottom:40px;
+	border-radius:20px;
+}
+
+.registragion {
+	background-color: pink;
+}
+
+
+

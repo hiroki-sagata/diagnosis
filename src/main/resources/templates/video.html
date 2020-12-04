@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職業ビデオ一覧</title>
+    <link th:href="@{/css/all.css}" rel="stylesheet">
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダーのフラグメントを挿入 -->
+    <div th:include="header :: header_part"></div>
+	<div class = "video" wrapper>
+	<div class = "box1">
+	<section>
+		<h1>title</h1>
+		<iframe width="600" height="300" 
+			src="https://www.youtube.com/embed/jxIpYOOh-TU" 
+			frameborder="0"
+			allow="accelerometer;
+			autoplay;
+			encrypted-media; gyroscope; 
+			picture-in-picture"
+			 allowfullscreen="allowfullscreen">
+		</iframe>
+	</section>
+	 <aside>
+	 <h3>人気の転職サイトはこちら</h3>
+        <ul>
+        	<li><a href="https://tenshoku.mynavi.jp/">マイナビ転職</a></li>
+        	<li><a href="https://doda.jp/?usrclk=PC_logout_commonHeader_logo">doda</a></li>
+        	<li><a href="https://www.bizreach.jp/lp/bizreach-08/pc/?trcd=0NMAF0000050_PC_&utm_source=nmaf&utm_medium=alliance&utm_campaign=nmaf">ビズリーチ</a></li>
+        </ul>
+	</aside>
+	</div>
+	<section>
+		<h1>title</h1>
+		<iframe width="600" height="300" 
+			src="https://www.youtube.com/embed/jxIpYOOh-TU" 
+			frameborder="0"
+			allow="accelerometer;
+			autoplay;
+			encrypted-media; gyroscope; 
+			picture-in-picture"
+			 allowfullscreen="allowfullscreen">
+		</iframe>
+	</section>
+	
+	
+	<section>
+		<h1>title</h1>
+		<iframe width="600" height="300" 
+			src="https://www.youtube.com/embed/jxIpYOOh-TU" 
+			frameborder="0"
+			allow="accelerometer;
+			autoplay;
+			encrypted-media; gyroscope; 
+			picture-in-picture"
+			 allowfullscreen="allowfullscreen">
+		</iframe>
+	</section>
+	
+	
+	</div>
+	<div class="sankou">
+		<h2>参考になりましたか？</h2>
+		<form action="/home" method="post">
+			<label><input type="radio" name="answer" value="はい" >はい</label>
+			<label><input type="radio" name="answer" value="いいえ" >いいえ</label>
+			<p>ご協力ありがとうございます！</p>
+			<input type="submit" value="送信">
+		</form>
+	</div>
+	
+	<div class="registration">
+		<h2>会員登録で転職で必須となるスキルを身につけよう！！</h2>
+		<p>登録後は転職時に有利になれるスキルや知識を見ることができます。</p>
+		<form action="/" method="post" class="user">
+			<h3>ユーザー登録</h3>
+				<labeL>名前</labeL><input type="text" name="name"><br>
+				<labeL>メール</labeL><input type="text" name="mail"><br>
+				<labeL>パスワード</labeL><input type="pass" name="pass"><br>
+				<input type="submit" value="登録">
+		</form>
+	</div>
+	
+     <!-- フッターのフラグメントを挿入 -->
+     <div th:include="header :: footer_part">  
+
+    
+</body>
+</html>
