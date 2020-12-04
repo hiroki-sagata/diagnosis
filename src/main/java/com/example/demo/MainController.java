@@ -1,9 +1,11 @@
 package com.example.demo;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,26 +13,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
+@Autowired
+UserDataRepository repository;
 
-	@Id @GeneratedValue(strategy = GenerationType.AUTO) @Column
-	private long id;
-	@Column(length = 20, nullable = false)
-	private String name;
-	@Column(length = 50, nullable = false)
-	private String mail;
-	@Column(nullable = false)
-	private String pass;
+@RequestMapping(value="/", method = RequestMethod.GET)
+public ModelAndView indexGet(ModelAndView mv) {
+	List<UserData>customers = repository.findAll();
+	mv.addObject("costomers",customers);
+	mv.setViewName("index");
+	return mv;
+}
+@RequestMapping(value="/",method = RequestMethod.POST)
+public ModelAndView indexPost(@ModelAttribute("formModel") UserData
+userData, ModelAndView mv) {
+repository.saveAndFlush(userData);
+return new ModelAndView("redirect:/");
+}
 
-	public long getId(){ return id; }
-	public void setId(long id) { this.id = id; }
-	public String getName(){ return name; }
-	public void setName(String name) { this.name = name; }
-	public String getMail(){ return mail; }
-	public void setMail(String mail) { this.mail = mail; }
-	public String getPass(){ return pass; }
-	public void setPass(String pass) { this.pass = pass; }
-	
-	
 @RequestMapping("/")
 public ModelAndView index(ModelAndView mv) {
 mv.setViewName("index");
@@ -198,16 +197,12 @@ total6 = answer1 + answer2+ answer3 + answer4 + answer5 + answer6 + answer7;
 System.out.println("シートFの「はい」の数は"+total6);
 
 int maxScore = 0;
-int badAnswer = 0;
 
 int [] score = {total1,total2,total3,total4,total5,total6};
 for(int i= 0; i < score.length; i++) {
 	if(maxScore < score[i]) {
 		maxScore = score[i];
 		System.out.println("現在の最大値は"+maxScore);
-	}else if(maxScore == score[i]) {
-		System.out.println("答えが重複しました");
-		badAnswer ++ ;
 	}
 	
 }System.out.println("最大値は"+maxScore);
