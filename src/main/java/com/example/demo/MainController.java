@@ -16,19 +16,7 @@ public class MainController {
 @Autowired
 UserDataRepository repository;
 
-@RequestMapping(value="/", method = RequestMethod.GET)
-public ModelAndView indexGet(ModelAndView mv) {
-	List<UserData>customers = repository.findAll();
-	mv.addObject("costomers",customers);
-	mv.setViewName("index");
-	return mv;
-}
-@RequestMapping(value="/",method = RequestMethod.POST)
-public ModelAndView indexPost(@ModelAttribute("formModel") UserData
-userData, ModelAndView mv) {
-repository.saveAndFlush(userData);
-return new ModelAndView("redirect:/");
-}
+
 
 @RequestMapping("/")
 public ModelAndView index(ModelAndView mv) {
@@ -290,6 +278,26 @@ mv.addObject("maxSheet",maxScore);
 mv.setViewName("answer");
 return mv;
 }
-//配列とif文の組み合わせ
-//java 最大値　で検索
+@RequestMapping(value="/", method = RequestMethod.GET)
+public ModelAndView indexGet(ModelAndView mv) {
+	List<UserData>customers = repository.findAll();
+	mv.addObject("customers",customers);
+	mv.setViewName("index");
+	return mv;
+}
+@RequestMapping(value="/",method = RequestMethod.POST)
+public ModelAndView indexPost(@ModelAttribute("formModel") UserData
+userData, ModelAndView mv) {
+repository.saveAndFlush(userData);
+return new ModelAndView("redirect:/");
+}
+@RequestMapping(value="/",method=RequestMethod.POST)
+public ModelAndView indexPost(ModelAndView mv,@RequestParam("answer8")int answer){
+int count = 0;
+count += answer;
+System.out.println("参考になった人が１人追加されました");
+mv.addObject("point",count);
+mv.setViewName("index");
+return mv;
+}
 }
