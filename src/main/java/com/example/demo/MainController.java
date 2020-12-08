@@ -98,7 +98,7 @@ public ModelAndView choose2Post(ModelAndView mv,
 @RequestParam("answer5")int answer5,@RequestParam("answer6")int answer6,
 @RequestParam("answer7")int answer7) {
 int total1 = 0;
-total1 = answer1 + answer2+ answer3 + answer4 + answer5 + answer6 + answer7;
+total1 = answer1 + answer2 + answer3 + answer4 + answer5 + answer6 + answer7;
 System.out.println("シートAの「はい」の数は"+total1);
 mv.addObject("sp1",total1);
 mv.setViewName("choose2");
@@ -113,7 +113,7 @@ public ModelAndView choose3Post(ModelAndView mv,
 @RequestParam("answer2-5")int answer5,@RequestParam("answer2-6")int answer6,
 @RequestParam("answer2-7")int answer7,@RequestParam("sheet-point1")int total1) {
 int total2 = 0;
-total2 = answer1 + answer2+ answer3 + answer4 + answer5 + answer6 + answer7;
+total2 = answer1 + answer2 + answer3 + answer4 + answer5 + answer6 + answer7;
 System.out.println("シートBの「はい」の数は"+total2);
 mv.addObject("sp1",total1);
 mv.addObject("sp2",total2);
@@ -291,11 +291,13 @@ userData, ModelAndView mv) {
 repository.saveAndFlush(userData);
 return new ModelAndView("redirect:/");
 }
-@RequestMapping(value="/",method=RequestMethod.POST)
-public ModelAndView indexPost(ModelAndView mv,@RequestParam("answer8")int answer){
+
+@RequestMapping(value="/video",method=RequestMethod.POST)
+public ModelAndView videoPost(ModelAndView mv,@RequestParam("point")int answer){
 int count = 0;
 count += answer;
 System.out.println("参考になった人が１人追加されました");
+System.out.println(count);
 mv.addObject("point",count);
 mv.setViewName("index");
 return mv;

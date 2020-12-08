@@ -64,9 +64,9 @@
 	</div>
 	<div class="sankou">
 		<h2>参考になりましたか？</h2>
-		<form action="/home" method="post">
-			<label><input type="radio" name="answer8" value="1" >はい</label>
-			<label><input type="radio" name="answer8" value="0" >いいえ</label>
+		<form action="/home" method="post" th:object="${formModel2}">
+			<label><input type="radio" name="point" value="1" >はい</label>
+			<label><input type="radio" name="point" value="0" >いいえ</label>
 			<p>ご協力ありがとうございます！</p>
 			<input type="submit" value="送信">
 		</form>
