@@ -2,6 +2,7 @@ package com.example.demo;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -278,9 +279,12 @@ mv.addObject("maxSheet",maxScore);
 mv.setViewName("answer");
 return mv;
 }
+//---------ユーザー登録---------
 @RequestMapping(value="/", method = RequestMethod.GET)
 public ModelAndView indexGet(ModelAndView mv) {
 	List<UserData>customers = repository.findAll();
+//	Optional<UserData> point = repository.findAll());
+//	mv.addObject("point",customers.get(point));
 	mv.addObject("customers",customers);
 	mv.setViewName("index");
 	return mv;
@@ -292,12 +296,27 @@ repository.saveAndFlush(userData);
 return new ModelAndView("redirect:/");
 }
 
+//------参考になった数------
+//@RequestMapping(value="/video",method=RequestMethod.POST)
+//public ModelAndView videoPost(ModelAndView mv,@RequestParam("point")int answer){
+//int count = 0;
+//count += answer;
+//System.out.println("参考になった人が１人追加されました");
+//System.out.println(count);
+//mv.addObject("point",count);
+//mv.setViewName("index");
+//return mv;
+//}
 @RequestMapping(value="/video",method=RequestMethod.POST)
-public ModelAndView videoPost(ModelAndView mv,@RequestParam("point")int answer){
+public ModelAndView videoPost(@ModelAttribute("formModel2")int answer,
+ModelAndView mv){
 int count = 0;
 count += answer;
-System.out.println("参考になった人が１人追加されました");
-System.out.println(count);
+if (answer == 1) {
+	System.out.println("参考になった人が１人追加されました");
+}else {
+	System.out.println("参考してもらえなかった");
+}
 mv.addObject("point",count);
 mv.setViewName("index");
 return mv;
