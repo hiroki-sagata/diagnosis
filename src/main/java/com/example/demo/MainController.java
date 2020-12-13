@@ -4,6 +4,8 @@ package com.example.demo;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,11 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+
 public class MainController {
 @Autowired
 UserDataRepository repository;
+@Autowired
+GoodButtonRepository goodRepository;
 
-
+//ーーーーーーーーーデフォルトでDBに登録された状態にできるーーーーーーーーーー
+@PostConstruct
+public void init() {
+GoodButton good = new GoodButton();
+good.setPoint(1);
+goodRepository.saveAndFlush(good);
+}
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 @RequestMapping("/")
 public ModelAndView index(ModelAndView mv) {
@@ -82,6 +94,12 @@ public ModelAndView side(ModelAndView mv) {
 @RequestMapping("/video")
 public ModelAndView video(ModelAndView mv) {
 	mv.setViewName("video");
+	return mv;
+}
+
+@RequestMapping("/point")
+public ModelAndView point(ModelAndView mv) {
+	mv.setViewName("point");
 	return mv;
 }
 //-----ここまでで表示させている-----
@@ -279,46 +297,59 @@ mv.addObject("maxSheet",maxScore);
 mv.setViewName("answer");
 return mv;
 }
+
+
+
 //---------ユーザー登録---------
+
+
+
+
 @RequestMapping(value="/", method = RequestMethod.GET)
 public ModelAndView indexGet(ModelAndView mv) {
 	List<UserData>customers = repository.findAll();
-//	Optional<UserData> point = repository.findAll());
-//	mv.addObject("point",customers.get(point));
+//	Optional<GoodButton> gp = goodRepository.findOne(long point){
+//	GoodButton gp = new GoodButton();
+//	gp.setPoint();
+//	goodRepository.point = 
+//	mv.addObject("point",point);
+//	mv.addObject("point",gp.get());
+	
 	mv.addObject("customers",customers);
 	mv.setViewName("index");
 	return mv;
 }
 @RequestMapping(value="/",method = RequestMethod.POST)
 public ModelAndView indexPost(@ModelAttribute("formModel") UserData
-userData, ModelAndView mv) {
+userData,ModelAndView mv) {
 repository.saveAndFlush(userData);
 return new ModelAndView("redirect:/");
 }
-
-//------参考になった数------
-//@RequestMapping(value="/video",method=RequestMethod.POST)
-//public ModelAndView videoPost(ModelAndView mv,@RequestParam("point")int answer){
-//int count = 0;
-//count += answer;
-//System.out.println("参考になった人が１人追加されました");
-//System.out.println(count);
-//mv.addObject("point",count);
-//mv.setViewName("index");
-//return mv;
+//@PostConstruct
+//public void init() {   
+//GoodButton good = new GoodButton();
+//good.setPoint(1);
+//goodRepository.saveAndFlush(good);
 //}
-@RequestMapping(value="/video",method=RequestMethod.POST)
-public ModelAndView videoPost(@ModelAttribute("formModel2")int answer,
-ModelAndView mv){
-int count = 0;
-count += answer;
-if (answer == 1) {
-	System.out.println("参考になった人が１人追加されました");
-}else {
-	System.out.println("参考してもらえなかった");
+@RequestMapping(value="/point",method = RequestMethod.POST)
+public ModelAndView pointPost(@RequestParam("point") long gdButton,
+ModelAndView mv) {
+GoodButton good2 = goodRepository.findById((long)1).get();
+gdButton += good2.getPoint();
+good2.setPoint(gdButton);
+System.out.println(good2);
+goodRepository.saveAndFlush(good2);
+mv.addObject("points",good2.getPoint());
+return new ModelAndView("redirect:/point");
 }
-mv.addObject("point",count);
-mv.setViewName("index");
-return mv;
-}
+//}
+//@RequestMapping(value="/side",method = RequestMethod.POST)
+//public ModelAndView sidePost(@RequestParam("point") long gdButton,
+//		ModelAndView mv) {
+//	long x = 0;
+//	x += gdButton;
+//	mv.addObject("points",x);
+//	mv.setViewName("/side");
+//	return mv;
+//}
 }
