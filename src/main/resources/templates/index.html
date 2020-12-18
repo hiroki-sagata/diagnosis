@@ -7,19 +7,38 @@
 <link th:href="@{/css/home.css}" rel="stylesheet">
 </head>
 <body>
+	<!-- ------------------------変更前コード------------------------ -->
 
+
+
+	
 	<h1>登録者リスト</h1>
 	<table>
-		<tr><th>登録者番号</th><th>名前</th><th>メールアドレス
-		</th><th>パスワード</th></tr>
+		<tr>
+			<th>登録者番号</th>
+			<th>名前</th>
+			<th>メールアドレス</th>
+			<th>パスワード</th>
+		</tr>
 		<tr th:each="c : ${customers}">
-		<td th:text="${c.id}"></td>
-		<td th:text="${c.name}"></td>
-		<td th:text="${c.mail}"></td>
-		<td>見せられないよ</td>
+			<td th:text="${c.id}"></td>
+			<td th:text="${c.name}"></td>
+			<td th:text="${c.mail}"></td>
+			<td>見せられないよ</td>
 		</tr>
 	</table>
-	<h2>現在までに参考になった人の数</h2>
-	<!-- <p th:text="${point}"></p> -->
+	<!-- ------------------------変更前コードここまで------------------------ -->
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
