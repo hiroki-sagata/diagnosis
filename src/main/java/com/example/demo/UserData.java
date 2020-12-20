@@ -35,12 +35,11 @@ private String name;
 
 
 @Column(length = 50, nullable = true)
-@Email
+@Email(message="E-mailアドレスを入力してください")
 private String mail;
 
 @Column(nullable = false)
-@NotEmpty(message="パスワードを入力してください")
-@Size(min = 6, max= 20)
+@Size(message="パスワードには6文字以上が必要です",min = 6, max= 20)
 private String pass;
 
 public long getId(){ return id; }
