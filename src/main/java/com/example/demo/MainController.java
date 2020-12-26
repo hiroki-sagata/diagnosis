@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -21,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @Controller
 
 public class MainController 
-implements WebMvcConfigurer    //追加-------------
+//implements WebMvcConfigurer    //追加-------------
 {
 @Autowired
 UserDataRepository repository;
@@ -112,6 +113,16 @@ public ModelAndView point(ModelAndView mv) {
 	mv.setViewName("point");
 	return mv;
 }
+@RequestMapping("/form")
+public ModelAndView form(ModelAndView mv) {
+	mv.setViewName("form");
+	return mv;
+}
+
+
+
+
+
 //-----ここまでで表示させている-----
 
 
@@ -228,7 +239,7 @@ for(int i= 0; i < score.length; i++) {
 
 //-----------ここから診断結果-----------
 
-
+String answerSheet;
 
 if(maxScore == total1) {
 	System.out.println("Aのシートが最大");
@@ -241,6 +252,8 @@ if(maxScore == total1) {
 	mv.addObject("job1","医療、介護職");
 	mv.addObject("job2","インストラクター、教育");
 	mv.addObject("job3","コールセンター、カウンセリング職");
+	answerSheet = "A";
+	mv.addObject("maxsp",answerSheet);
 	
 }else if(maxScore == total2) {
 	System.out.println("Bのシートが最大");
@@ -253,6 +266,8 @@ if(maxScore == total1) {
 	mv.addObject("job1","管理職全般");
 	mv.addObject("job2","営業、企画、人事・労務");
 	mv.addObject("job3","起業家");
+	answerSheet = "B";
+	mv.addObject("sheet",answerSheet);
 	
 }else if(maxScore == total3) {
 	System.out.println("Cのシートが最大");
@@ -265,6 +280,8 @@ if(maxScore == total1) {
 	mv.addObject("job1","一般事務、経理");
 	mv.addObject("job2","秘書、税理士");
 	mv.addObject("job3","数字やデータ処理系");
+	answerSheet = "C";
+	mv.addObject("sheet",answerSheet);
 	
 }else if(maxScore == total4) {
 	System.out.println("Dのシートが最大");
@@ -277,6 +294,9 @@ if(maxScore == total1) {
 	mv.addObject("job1","商品開発");
 	mv.addObject("job2","美容師");
 	mv.addObject("job3","デザイナー");
+	answerSheet = "D";
+	mv.addObject("sheet",answerSheet);
+	
 	
 }else if(maxScore == total5) {
 	System.out.println("Eのシートが最大");
@@ -289,6 +309,8 @@ if(maxScore == total1) {
 	mv.addObject("job1","プログラマー、CADオペレーター");
 	mv.addObject("job2","歯科技師");
 	mv.addObject("job3","トリマー");
+	answerSheet = "E";
+	mv.addObject("sheet",answerSheet);
 	
 }else if(maxScore == total6) {
 	System.out.println("Fのシートが最大");
@@ -301,6 +323,9 @@ if(maxScore == total1) {
 	mv.addObject("job1","医師");
 	mv.addObject("job2","研究者");
 	mv.addObject("job3","SE（システムエンジニア）");
+	answerSheet = "F";
+	mv.addObject("sheet",answerSheet);
+	
 }
 
 mv.addObject("maxSheet",maxScore);
@@ -308,33 +333,66 @@ mv.setViewName("answer");
 return mv;
 }
 
+//---------ビデオページの診断結果別表示---------
+@RequestMapping(value="/video", method = RequestMethod.POST )
+public ModelAndView videoPost(@RequestParam("maxsp") String result,
+		ModelAndView mv) {
+	mv.addObject("maxsp",result);
+	
+	if(result == "A") {
+		mv.addObject("helper",1);
+		mv.addObject("instructor",1);
+		mv.addObject("counselor",1);
+		System.out.println("Aの動画を３つ表示");
+	}else if (result == "B") {
+		mv.addObject("hellp","B");
+		mv.addObject("hellp","B");
+		mv.addObject("hellp","B");
+		
+	}else if (result == "C") {
+		mv.addObject("hellp","C");
+		mv.addObject("hellp","C");
+		mv.addObject("hellp","C");
+		
+	}else if (result == "D") {
+		mv.addObject("hellp","D");
+		mv.addObject("hellp","D");
+		mv.addObject("hellp","D");
+		
+	}else if (result == "E") {
+		mv.addObject("hellp","E");
+		mv.addObject("hellp","E");
+		mv.addObject("hellp","E");
+		
+	}else if (result == "F") {
+		mv.addObject("hellp","F");
+		mv.addObject("hellp","F");
+		mv.addObject("hellp","F");
+		
+	}
+	mv.setViewName("video");
+	return mv;
+}
+
+
+
+
+
 
 
 //---------ユーザー登録---------
 
 
-////  -------Validationの追加----------2
-@Override
-public void addViewControllers(ViewControllerRegistry registry) {
-  registry.addViewController("/index").setViewName("index");
-}
+////  -------Validationの追加----------
+//@Override
+//public void addViewControllers(ViewControllerRegistry registry) {
+//  registry.addViewController("/index").setViewName("index");
+//}
 
 @GetMapping("/video")
 public String getVideo(UserData userData) {
   return "video";
 }
-//----------------------------------------------------------------
-//@RequestMapping(value="/", method = RequestMethod.GET)
-//public ModelAndView indexGet(ModelAndView mv) {
-//	List<UserData>customers = repository.findAll();	
-//	mv.addObject("customers",customers);
-//	mv.setViewName("index");
-//	return mv;
-//}
-
-//----------------------------------------------------------------
-
-
 
 @PostMapping("/")
 public String checkPersonInfo(@Valid @ModelAttribute ("userData") UserData userData,
@@ -347,8 +405,6 @@ public String checkPersonInfo(@Valid @ModelAttribute ("userData") UserData userD
   return "redirect:/home";
 }
 
-
-//----------Validationの追加前のコード------------
 
 @RequestMapping(value="/", method = RequestMethod.GET)
 public ModelAndView indexGet(ModelAndView mv) {
@@ -388,4 +444,15 @@ public ModelAndView pointGet(ModelAndView mv) {
 	mv.setViewName("point");
 	return mv;
 }
+//--------spring securityの追加はここから---------
+//@PostMapping("/form")
+//public String onAuthenticationError()
+//@PostMapping("/form")
+//public String form(@Valid @ModelAttribute UserRegistrationForm userForm,
+//					BindingResult bindingResult,
+//					Model model) {
+//
+//	
+//
+//}
 }

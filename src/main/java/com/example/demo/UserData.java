@@ -20,8 +20,9 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table
-public class UserData {
-
+public class UserData{
+	
+	
 @Id 
 @GeneratedValue(strategy = GenerationType.IDENTITY) 
 @Column

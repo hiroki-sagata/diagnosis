@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>職業診断</title>
-    
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/all.css">
-    
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>職業診断</title>
+
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/all.css">
+
+
 </head>
 <body>
-    <div th:fragment="header_part">
-        <!-- ヘッダーここから -->
-      <header class="page-header wrapper">
-          <!-- あとでイメージを変える -->
-          <h1><a href="index.html"><img class="logo" src="image/image1.png" alt="職業診断"></a></h1>
-          <nav>
-            <ul class="main-nav">
-                <li><a href="/home">HOME</a></li>
-                <li><a href="/video">VIDEO</a></li>
-                <li><a href="/contact">CONTACT</a></li>
-            </ul>
-          </nav>
-     </header> 
-     <!-- ヘッダーはここまで -->
-    </div>
+	<div th:fragment="header_part">
+		<!-- ヘッダーここから -->
+		<header class="page-header wrapper">
+			<!-- あとでイメージを変える -->
+			<h1>
+				<a href="index.html"><img class="logo" src="image/image1.png"
+					alt="職業診断"></a>
+			</h1>
+			<nav>
+				<ul class="main-nav">
+					<li><a href="/home">HOME</a></li>
+					<li><a href="/video">VIDEO</a></li>
+					<li><a href="/contact">CONTACT</a></li>
+				</ul>
+			</nav>
+		</header>
+		<!-- ヘッダーはここまで -->
+	</div>
 
-    <div th:fragment="footer_part">
-        <!-- ここからフッター -->
-        <footer>
-            <ul class="footer-bar">
-                <li><a href="/home">HOME</a></li>
-                <li><a href="/video">VIDEO</a></li>
-                <li><a href="/contact">CONTACT</a></li>
-            </ul>
+	<div th:fragment="footer_part">
+		<!-- ここからフッター -->
+		<footer>
+			<ul class="footer-bar">
+				<li><a href="/home">HOME</a></li>
+				<li><a href="/video">VIDEO</a></li>
+				<li><a href="/contact">CONTACT</a></li>
+			</ul>
 
-        </footer>
-        <!-- フッターはここまで -->
-    </div>
+		</footer>
+		<!-- フッターはここまで -->
+	</div>
 
 
 </body>

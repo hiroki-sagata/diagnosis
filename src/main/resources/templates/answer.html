@@ -9,7 +9,9 @@
 
 </head>
 <body>
-
+	
+	
+	<h1 th:text="${sheet}"></h1> <!--値が渡っているか確認用  -->
 	<h1 th:text="${maxSheet}"></h1>
 	<!-- ヘッダーのフラグメントを挿入 -->
 	<div th:include="header :: header_part"></div>
