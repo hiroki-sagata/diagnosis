@@ -8,7 +8,7 @@
 .wrapper {
 	width: 100%;
 	margin: 0 auto;
-	padding: 0 4%;
+	padding: 0;
 	background-color: rgb(122, 201, 253);
 }
 
@@ -20,23 +20,26 @@
 .main-nav {
 	display: flex;
 	list-style: none;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	text-transform: uppercase;
-	margin-top: 34px;
+	margin-top: 40px;
 }
 
-.main-nav li {
+ .main-nav li {
 	margin-left: 20px;
-}
+	padding-right: 20px;
+} 
 
 .main-nav a {
 	text-decoration: none;
+	padding-left: 20px;
 }
 
 /* ーーーーーーーーーーーーーーーーーーーーーーーーフッターーーーーーーーーーーーーーーーーーーーーーーー */
 footer {
-	background-color: rgba(0, 0, 0, 0.40);
+	background-color: gray;
 	padding: 30px;
+	margin: 0;
 }
 
 .footer-bar {

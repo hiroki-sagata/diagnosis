@@ -253,7 +253,7 @@ if(maxScore == total1) {
 	mv.addObject("job2","インストラクター、教育");
 	mv.addObject("job3","コールセンター、カウンセリング職");
 	answerSheet = "A";
-	mv.addObject("maxsp",answerSheet);
+	mv.addObject("aS",answerSheet);
 	
 }else if(maxScore == total2) {
 	System.out.println("Bのシートが最大");
@@ -335,39 +335,40 @@ return mv;
 
 //---------ビデオページの診断結果別表示---------
 @RequestMapping(value="/video", method = RequestMethod.POST )
-public ModelAndView videoPost(@RequestParam("maxsp") String result,
+public ModelAndView videoPost(@RequestParam("answerSheet") String result,
 		ModelAndView mv) {
-	mv.addObject("maxsp",result);
+	System.out.println(result);
+	mv.addObject("v_sheet",result);
 	
 	if(result == "A") {
-		mv.addObject("helper",1);
-		mv.addObject("instructor",1);
-		mv.addObject("counselor",1);
+		mv.addObject("helper",true);
+		mv.addObject("instructor",true);
+		mv.addObject("counselor",true);
 		System.out.println("Aの動画を３つ表示");
 	}else if (result == "B") {
-		mv.addObject("hellp","B");
-		mv.addObject("hellp","B");
-		mv.addObject("hellp","B");
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
 		
 	}else if (result == "C") {
-		mv.addObject("hellp","C");
-		mv.addObject("hellp","C");
-		mv.addObject("hellp","C");
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
 		
 	}else if (result == "D") {
-		mv.addObject("hellp","D");
-		mv.addObject("hellp","D");
-		mv.addObject("hellp","D");
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
 		
 	}else if (result == "E") {
-		mv.addObject("hellp","E");
-		mv.addObject("hellp","E");
-		mv.addObject("hellp","E");
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
 		
 	}else if (result == "F") {
-		mv.addObject("hellp","F");
-		mv.addObject("hellp","F");
-		mv.addObject("hellp","F");
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
+		mv.addObject("hellp",true);
 		
 	}
 	mv.setViewName("video");
@@ -444,15 +445,4 @@ public ModelAndView pointGet(ModelAndView mv) {
 	mv.setViewName("point");
 	return mv;
 }
-//--------spring securityの追加はここから---------
-//@PostMapping("/form")
-//public String onAuthenticationError()
-//@PostMapping("/form")
-//public String form(@Valid @ModelAttribute UserRegistrationForm userForm,
-//					BindingResult bindingResult,
-//					Model model) {
-//
-//	
-//
-//}
 }

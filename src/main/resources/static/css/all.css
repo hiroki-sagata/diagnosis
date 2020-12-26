@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+body {
+	background-image: url("../image/clouds.png");
+}
 /* ホーム画面　診断スタートボタン */
 .home {
 	background-image: url("../image/home.jpg");
@@ -15,7 +17,8 @@
 }
 
 li {
-	list-style: none;
+	/* list-style: none; */
+	padding-left: 20px;
 }
 
 .start-button {
@@ -40,9 +43,9 @@ li {
 	text-align: center;
 }
 
-.choose h1 {
+/* .choose h1 {
 	
-}
+} */
 
 .choose p {
 	background-color: yellow;
@@ -61,6 +64,7 @@ li {
 /* 診断結果 */
 .answer {
 	display: flex;
+	justify-content: space-between"
 }
 
 .answer img {
@@ -97,7 +101,12 @@ article {
 
 aside {
 	width: 26%;
-	border: 5px solid blue;
+	border: 1px solid gray;
+	text-align:center;
+}
+aside ul{
+	list-style-position: outside;
+	list-style: none;
 }
 
 .Recommended {
@@ -111,11 +120,11 @@ aside {
 }
 /* ーーーーーーーここからVIDEOーーーーーーー */
 .video {
-	background-color: gray;
+	/* background-color: gray; */
 }
 
 .video h1 {
-	color: white;
+	color: black;
 }
 
 .video section {
