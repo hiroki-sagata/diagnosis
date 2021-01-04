@@ -8,28 +8,24 @@
 <link th:href="@{/css/home.css}" rel="stylesheet">
 </head>
 <body>
-	<!-- ヘッダーのフラグメントを挿入 -->
-	<div th:include="header :: header_part"></div>
+ <!-- ヘッダーのフラグメントを挿入 -->
+ <div th:include="header :: header_part"></div>
 
-	<form th:action="@{/contact}" method="POST" name="form" th:object="${form}">
-   	 
-   	<p>問い合わせカテゴリー</p>
-  	  <select name="category" th:field="*{category}">
+ <form th:action="@{/contact}" method="POST" name="form" th:object="${form}">
+     
+    <p>問い合わせカテゴリー</p>
+     <select name="category" th:field="*{category}">
         <option value="">---</option>
         <option th:each="item : *{getCategoryList()}" th:value="${item.key}" th:text="${item.value}"/>
-   	 </select>
-  	  <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}">エラーメッセージ</p>
+     </select>
+     <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}">エラーメッセージ</p>
 
-	    <p>問い合わせ内容</p>
-	  	  <textarea name="content" placeholder="お問合せ内容を入力してください。" th:field="*{content}"></textarea>
-	   		 <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">エラーメッセージ</p>
-	  <input type="submit" value="確認"/>
-	</form>
-
-
-
-
-	<!-- フッターのフラグメントを挿入 -->
-	<div th:include="header :: footer_part">
+     <p>問い合わせ内容</p>
+      <textarea name="content" placeholder="お問合せ内容を入力してください。" th:field="*{content}"></textarea>
+       <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">エラーメッセージ</p>
+   <input type="submit" value="確認"/>
+ </form>
+ <!-- フッターのフラグメントを挿入 -->
+ <div th:include="header :: footer_part">
 </body>
 </html>

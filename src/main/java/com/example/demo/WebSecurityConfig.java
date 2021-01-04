@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
     public void configure(WebSecurity web) throws Exception {
     web.ignoring().antMatchers("/home","/choose","/choose2","/choose3",
-    		"/choose4","/choose5","/choose6","/answer","/video","/contact","/confirm",
+    		"/choose4","/choose5","/choose6","/answer","/video","/contact","/confirm","/complete",
     		"/css/all.css","/css/home.css", "/image/home.jpg",
     		"/image/clouds.png", "/image/image1.png", "/image/other job.jpg","/fonts/**");
         }

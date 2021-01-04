@@ -517,8 +517,8 @@ public ModelAndView pointGet(ModelAndView mv) {
 @RequestMapping("/contact")
 public String input(@ModelAttribute("form") Form ContactForm,
         Model model, HttpServletRequest request) {
-		model.addAttribute("form",ContactForm);
-    	return "contact.html";
+  model.addAttribute("form",ContactForm);
+     return "contact.html";
 }
 @RequestMapping(value = "/contact", method = RequestMethod.POST)
 public String input(@Valid @ModelAttribute("form") Form Form,
@@ -533,12 +533,5 @@ BindingResult bindingResult, Model model, HttpServletRequest request) {
     session.setAttribute("form", Form);
     return "redirect:/confirm";
 }
-@RequestMapping("/complete")
-public String complete(
-        @ModelAttribute("form") Form ContactForm,
-        Model model, HttpServletRequest request) {
-	
-    model.addAttribute("form",ContactForm);
-    return "complete.html";
-}
+
 }

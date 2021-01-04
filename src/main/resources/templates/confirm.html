@@ -12,7 +12,7 @@
 	<div th:include="header :: header_part"></div>
 
 
-<form  th:action="@{/complete}" method="POST" name="Form" th:object="${Form}">
+<form  th:action="@{/complete}" method="POST" name="form" th:object="${form}">
     <p>問い合わせカテゴリー</p>
     <p th:text="*{getCategoryList().get('__*{category}__')}">カテゴリー１</p>
 
