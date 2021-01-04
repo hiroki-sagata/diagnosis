@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,6 @@
 <title>職業診断</title>
 <link th:href="@{/css/all.css}" rel="stylesheet">
 <link th:href="@{/css/home.css}" rel="stylesheet">
-
 </head>
 <body>
 	<!-- ヘッダーのフラグメントを挿入 -->
@@ -17,7 +16,7 @@
 			<h1>ひとつのことをとことん研究するのが好き</h1>
 		</div>
 
-		<form action="/answer" method="post" class="choose-question-answer">
+		<form th:action="@{/answer}" method="post" class="choose-question-answer">
 			<input type="hidden" name="sheet-point1" th:value="${sp1}"> 
 			<input type="hidden" name="sheet-point2" th:value="${sp2}"> 
 			<input type="hidden" name="sheet-point3" th:value="${sp3}"> 
@@ -73,9 +72,8 @@
 			</div>
 			<input type="radio" name="answer6-7" value=1> <label>はい</label>
 			<input type="radio" name="answer6-7" value=0> <label>いいえ</label>
-			<input type="hidden" name="answerSheet" th:value="${aS}">
 
-			<p>間違いがなければ送信ボタンを押して次の質問へ！</p>
+			<p>お疲れ様でした！診断結果を見てみましょう</p>
 			<input type="submit" value="送信">
 
 		</form>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認画面</title>
+<link th:href="@{/css/all.css}" rel="stylesheet">
+<link th:href="@{/css/home.css}" rel="stylesheet">
+</head>
+<body>
+	<!-- ヘッダーのフラグメントを挿入 -->
+	<div th:include="header :: header_part"></div>
+
+
+<form  th:action="@{/complete}" method="POST" name="Form" th:object="${Form}">
+    <p>問い合わせカテゴリー</p>
+    <p th:text="*{getCategoryList().get('__*{category}__')}">カテゴリー１</p>
+
+    <p>問い合わせ内容</p>
+    <p th:text="*{content}">ここに問合せ内容を表示</p>
+
+    <div>
+        <input type="hidden" name="category" th:value="*{category}" />
+        <input type="hidden" name="content" th:value="*{content}" />
+        <input type="submit" value="送信" />
+    </div>
+</form>
+
+
+
+	<!-- フッターのフラグメントを挿入 -->
+	<div th:include="header :: footer_part">
+</body>
+</html>

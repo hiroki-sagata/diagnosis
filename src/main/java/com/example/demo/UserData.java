@@ -40,7 +40,7 @@ private String name;
 private String mail;
 
 @Column(nullable = false)
-@Size(message="パスワードには6文字以上が必要です",min = 6, max= 20)
+//@Size(message="パスワードには6文字以上が必要です",min = 6, max= 20)
 private String pass;
 
 public long getId(){ return id; }

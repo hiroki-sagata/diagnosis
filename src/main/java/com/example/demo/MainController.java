@@ -2,15 +2,18 @@ package com.example.demo;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+
 
 @Controller
-
 public class MainController 
 //implements WebMvcConfigurer    //追加-------------
 {
@@ -82,11 +84,11 @@ public ModelAndView choose6(ModelAndView mv) {
 mv.setViewName("choose6");
 return mv;
 }
-@RequestMapping("/contact")
-public ModelAndView contact(ModelAndView mv) {
-	mv.setViewName("contact");
-	return mv;
-}
+//@RequestMapping("/contact")
+//public ModelAndView contact(ModelAndView mv) {
+//	mv.setViewName("contact");
+//	return mv;
+//}
 @RequestMapping("/header")
 public ModelAndView header(ModelAndView mv) {
 	mv.setViewName("header");
@@ -225,49 +227,51 @@ total6 = answer1 + answer2+ answer3 + answer4 + answer5 + answer6 + answer7;
 System.out.println("シートFの「はい」の数は"+total6);
 
 int maxScore = 0;
-
+String answerSheet = null;
 int [] score = {total1,total2,total3,total4,total5,total6};
 for(int i= 0; i < score.length; i++) {
 	if(maxScore < score[i]) {
 		maxScore = score[i];
 		System.out.println("現在の最大値は"+maxScore);
 	}
-	
-}System.out.println("最大値は"+maxScore);
+}
+
+
+
 
 
 
 //-----------ここから診断結果-----------
 
-String answerSheet;
+
 
 if(maxScore == total1) {
 	System.out.println("Aのシートが最大");
 	String sheetA = "あなたは「サポーター」タイプ";
 	String sheetAAnswer = "あなたは人と接し、相手が喜んでくれることや、誰かの役に立つことに喜びを感じるタイプ。自分の利益を追求するよりも人をサポートし、その人が幸せになることで、あなた自身もハッピーになるのでは？ 社会貢献やボランティア活動などへの意識も高く、人に何かを教えることも好きなはず。\n"
 			+ "\n"
-			+ "　ただ、いつも周囲の人間関係や友人関係に気を配って、どこか気疲れしてしまうことが多いかもしれません。利益や売り上げの数字を重視する風土の組織では、ストレスが溜まることも少なくないでしょう。おすすめは誰かをサポートする医療や介護系などの職種。これに向けた資格を目指してみては。";
+			+ "ただ、いつも周囲の人間関係や友人関係に気を配って、どこか気疲れしてしまうことが多いかもしれません。利益や売り上げの数字を重視する風土の組織では、ストレスが溜まることも少なくないでしょう。おすすめは誰かをサポートする医療や介護系などの職種。これに向けた資格を目指してみては。";
 	mv.addObject("type",sheetA);
 	mv.addObject("type_answer",sheetAAnswer);
 	mv.addObject("job1","医療、介護職");
 	mv.addObject("job2","インストラクター、教育");
 	mv.addObject("job3","コールセンター、カウンセリング職");
 	answerSheet = "A";
-	mv.addObject("aS",answerSheet);
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total2) {
 	System.out.println("Bのシートが最大");
 	String sheetB = "あなたは「リーダー」タイプ";
 	String sheetBAnswer = "あなたは組織の中でリーダーシップを取って、目的に向かって邁進していくことに喜びを感じるタイプ。組織をまとめたり、企業経営にも関心が高く、積極的に昇進・昇格したいと思っている傾向もあるよう。\n"
 			+ "\n"
-			+ "　自信家で周囲からは指導力があると言われることも多く、社外でも高い社会的地位を得たいと思っていない？ 話術にも長けており、他人と議論をしても、多くの場合は相手を説き伏せて自分の意見を通すみたい。内心そのことに喜びを感じている人が多そう。独立志向も持つあなたは、経営に役立つ中小企業診断士、MBAといった難しい資格にチャレンジもしてみて！";
+			+ "自信家で周囲からは指導力があると言われることも多く、社外でも高い社会的地位を得たいと思っていない？ 話術にも長けており、他人と議論をしても、多くの場合は相手を説き伏せて自分の意見を通すみたい。内心そのことに喜びを感じている人が多そう。独立志向も持つあなたは、経営に役立つ中小企業診断士、MBAといった難しい資格にチャレンジもしてみて！";
 	mv.addObject("type",sheetB);
 	mv.addObject("type_answer",sheetBAnswer);
 	mv.addObject("job1","管理職全般");
 	mv.addObject("job2","営業、企画、人事・労務");
 	mv.addObject("job3","起業家");
 	answerSheet = "B";
-	mv.addObject("sheet",answerSheet);
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total3) {
 	System.out.println("Cのシートが最大");
@@ -281,7 +285,7 @@ if(maxScore == total1) {
 	mv.addObject("job2","秘書、税理士");
 	mv.addObject("job3","数字やデータ処理系");
 	answerSheet = "C";
-	mv.addObject("sheet",answerSheet);
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total4) {
 	System.out.println("Dのシートが最大");
@@ -295,7 +299,7 @@ if(maxScore == total1) {
 	mv.addObject("job2","美容師");
 	mv.addObject("job3","デザイナー");
 	answerSheet = "D";
-	mv.addObject("sheet",answerSheet);
+	mv.addObject("choose",answerSheet);
 	
 	
 }else if(maxScore == total5) {
@@ -310,7 +314,7 @@ if(maxScore == total1) {
 	mv.addObject("job2","歯科技師");
 	mv.addObject("job3","トリマー");
 	answerSheet = "E";
-	mv.addObject("sheet",answerSheet);
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total6) {
 	System.out.println("Fのシートが最大");
@@ -324,56 +328,121 @@ if(maxScore == total1) {
 	mv.addObject("job2","研究者");
 	mv.addObject("job3","SE（システムエンジニア）");
 	answerSheet = "F";
-	mv.addObject("sheet",answerSheet);
+	mv.addObject("choose",answerSheet);
 	
 }
 
 mv.addObject("maxSheet",maxScore);
+
 mv.setViewName("answer");
 return mv;
 }
 
-//---------ビデオページの診断結果別表示---------
+//---------ビデオページの診断結果別表示試し---------
 @RequestMapping(value="/video", method = RequestMethod.POST )
-public ModelAndView videoPost(@RequestParam("answerSheet") String result,
-		ModelAndView mv) {
-	System.out.println(result);
-	mv.addObject("v_sheet",result);
+public ModelAndView videoPost(ModelAndView mv,
+@RequestParam("result")String resultNumber) {
 	
-	if(result == "A") {
+	mv.addObject("X",resultNumber);
+	
+	switch(resultNumber) {
+	case "A":
+		mv.addObject("job1","医療、介護職");
+		mv.addObject("job2","インストラクター、教育");
+		mv.addObject("job3","コールセンター、カウンセリング職");
+		
 		mv.addObject("helper",true);
 		mv.addObject("instructor",true);
 		mv.addObject("counselor",true);
-		System.out.println("Aの動画を３つ表示");
-	}else if (result == "B") {
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
+		break;
+	case "B" :
+		mv.addObject("job1","管理職全般");
+		mv.addObject("job2","営業、企画、人事・労務");
+		mv.addObject("job3","起業家");
 		
-	}else if (result == "C") {
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
+		mv.addObject("management",true);
+		mv.addObject("sales",true);
+		mv.addObject("entrepreneur",true);
+		break;
+	case "C" :
+		mv.addObject("job1","一般事務、経理");
+		mv.addObject("job2","秘書、税理士");
+		mv.addObject("job3","数字やデータ処理系");
 		
-	}else if (result == "D") {
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
+		mv.addObject("accounting",true);
+		mv.addObject("secretary",true);
+		mv.addObject("dataentry",true);
+		break;
+	case "D" :
+		mv.addObject("job1","商品開発");
+		mv.addObject("job2","美容師");
+		mv.addObject("job3","デザイナー");
 		
-	}else if (result == "E") {
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
+		mv.addObject("productdvelopment",true);
+		mv.addObject("hairdresser",true);
+		mv.addObject("designer",true);
+		break;
+	case "E" :
+		mv.addObject("job1","プログラマー、CADオペレーター");
+		mv.addObject("job2","歯科技師");
+		mv.addObject("job3","トリマー");
 		
-	}else if (result == "F") {
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
-		mv.addObject("hellp",true);
+		mv.addObject("programmer",true);
+		mv.addObject("dentaltechnician",true);
+		mv.addObject("trimmer",true);
+		break;
+	case "F" :
+		mv.addObject("job1","医師");
+		mv.addObject("job2","研究者");
+		mv.addObject("job3","SE（システムエンジニア）");
 		
+		mv.addObject("doctor",true);
+		mv.addObject("researcher",true);
+		mv.addObject("systemengineers",true);
+		break;
 	}
+	
 	mv.setViewName("video");
 	return mv;
 }
+	
+//----------------------------試し---------------------------	
+	
+	
+//	if(result == "A") {
+//		mv.addObject("helper",true);
+//		mv.addObject("instructor",true);
+//		mv.addObject("counselor",true);
+//		System.out.println("Aの動画を３つ表示");
+//	}else if (result == "B") {
+//		mv.addObject("management",true);
+//		mv.addObject("sales",true);
+//		mv.addObject("entrepreneur",true);
+//		
+//	}else if (result == "C") {
+//		mv.addObject("accounting",true);
+//		mv.addObject("secretary",true);
+//		mv.addObject("dataentry",true);
+//		
+//	}else if (result == "D") {
+//		mv.addObject("productdvelopment",true);
+//		mv.addObject("hairdresser",true);
+//		mv.addObject("designer",true);
+//		
+//	}else if (result == "E") {
+//		mv.addObject("programmer",true);
+//		mv.addObject("dentaltechnician",true);
+//		mv.addObject("trimmer",true);
+//		
+//	}else if (result == "F") {
+//		mv.addObject("doctor",true);
+//		mv.addObject("researcher",true);
+//		mv.addObject("systemengineers",true);
+//		
+//	}
+//	mv.setViewName("video");
+//	return mv;
+//}
 
 
 
@@ -383,15 +452,9 @@ public ModelAndView videoPost(@RequestParam("answerSheet") String result,
 
 //---------ユーザー登録---------
 
-
-////  -------Validationの追加----------
-//@Override
-//public void addViewControllers(ViewControllerRegistry registry) {
-//  registry.addViewController("/index").setViewName("index");
-//}
-
 @GetMapping("/video")
 public String getVideo(UserData userData) {
+
   return "video";
 }
 
@@ -400,9 +463,9 @@ public String checkPersonInfo(@Valid @ModelAttribute ("userData") UserData userD
 		BindingResult bindingResult) {
 
   if (bindingResult.hasErrors()) {
-    return "video";
+	  return "video";
   }
-  repository.saveAndFlush(userData);
+  repository.saveAndFlush(userData);  
   return "redirect:/home";
 }
 
@@ -444,5 +507,38 @@ public ModelAndView pointGet(ModelAndView mv) {
 	mv.addObject("points",good.getPoint());
 	mv.setViewName("point");
 	return mv;
+}
+
+//------------ここからお問合せフォーム------------
+
+
+
+
+@RequestMapping("/contact")
+public String input(@ModelAttribute("form") Form ContactForm,
+        Model model, HttpServletRequest request) {
+		model.addAttribute("form",ContactForm);
+    	return "contact.html";
+}
+@RequestMapping(value = "/contact", method = RequestMethod.POST)
+public String input(@Valid @ModelAttribute("form") Form Form,
+BindingResult bindingResult, Model model, HttpServletRequest request) {
+
+    // エラーがある場合、自画面遷移する
+    if (bindingResult.hasErrors()) {
+        return "contact.html";
+    }
+
+    HttpSession session = request.getSession();
+    session.setAttribute("form", Form);
+    return "redirect:/confirm";
+}
+@RequestMapping("/complete")
+public String complete(
+        @ModelAttribute("form") Form ContactForm,
+        Model model, HttpServletRequest request) {
+	
+    model.addAttribute("form",ContactForm);
+    return "complete.html";
 }
 }

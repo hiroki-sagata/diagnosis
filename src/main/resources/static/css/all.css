@@ -64,7 +64,7 @@ li {
 /* 診断結果 */
 .answer {
 	display: flex;
-	justify-content: space-between"
+	justify-content: space-between;
 }
 
 .answer img {
@@ -118,6 +118,12 @@ aside ul{
 .Recommended a {
 	text-decoration: none;
 }
+
+.video_post {
+	margin-left: 35%;
+	margin-bottom: 30px;
+}
+
 /* ーーーーーーーここからVIDEOーーーーーーー */
 .video {
 	/* background-color: gray; */

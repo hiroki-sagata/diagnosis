@@ -64,15 +64,16 @@
 			</exclusions>
 		</dependency>
 		
-		<!-- <dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		</dependency>
-		
+<!-- 	ーーーーーーーーーーーーーーーここから追加ーーーーーーーーーーーーーーーー -->
+
+
+
+
 		<dependency>
-		    <groupId>org.thymeleaf.extras</groupId>
-		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-		</dependency> -->
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
 		
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -80,7 +81,33 @@
 		    <scope>provided</scope>
 		</dependency>
 		
-		<!-- <dependency>
+ 		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		</dependency>
+		
+		 <dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.thymeleaf.extras</groupId>
+		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
+		
+		
+<!-- 	ーーーーーーーーーーーーーーーここから追加ーーーーーーーーーーーーーーーー -->
+		
+		
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-test</artifactId>
 		    <scope>test</scope>
@@ -88,16 +115,6 @@
 		
 		
 		
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <scope>provided</scope>
-		</dependency> -->
-		
-		<!-- <dependency>
-    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-	</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -107,12 +124,31 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
+		
 		
 	</dependencies>
 
 	<build>
 		<plugins>
+		
+	<!-- 	ーーーーーーーーーーーーーーーここから追加ーーーーーーーーーーーーーーーー -->
+		<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+				
+				</executions>
+				<configuration>
+				<executable>ng</executable>
+				<workingDirectory>src/main/resources/frontend</workingDirectory>
+				<arguments>
+					<argument>build</argument>
+				</arguments>
+				</configuration>
+			</plugin>
+			<!-- 	ーーーーーーーーーーーーーーーここからまで追加ーーーーーーーーーーーーーーーー -->
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

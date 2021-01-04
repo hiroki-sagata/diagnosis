@@ -10,60 +10,216 @@
 <body>
 	<!-- ヘッダーのフラグメントを挿入 -->
 	<div th:include="header :: header_part"></div>
-	
-	<h1 th:text="${v_sheet}"></h1>
-	
-	
+		
+		<h1 th:text="${X}"></h1>
+		
 	<div class="video" wrapper>
 		<div class="box1">
 			<section>
-				<h1>1</h1>
+				<h1 th:text="${job1}">1</h1>
+				
+			
+			
+				<!-- ーーーーーーーーーーNo1動画ーーーーーーーーーー -->
+				
 				<iframe th:if="${helper}" width="600" height="300"
 					src="https://www.youtube.com/embed/kFwgDfmAink" frameborder="0"
 					allow="accelerometer;
-			autoplay;
-			encrypted-media; gyroscope; 
-			picture-in-picture"
-					allowfullscreen="allowfullscreen"> </iframe>
+					autoplay;
+					encrypted-media; gyroscope; 
+					picture-in-picture"
+					allowfullscreen="allowfullscreen"> 
+				</iframe>
+				
+				<iframe th:if="${management}" width="600" height="300"
+					src="https://www.youtube.com/embed/giunAIgMCgg" frameborder="0"
+					allow="accelerometer;
+					autoplay;
+					encrypted-media; gyroscope; 
+					picture-in-picture"
+					allowfullscreen="allowfullscreen"> 
+				</iframe>
+				
+				<iframe th:if="${accounting}" width="600" height="300"
+					src="https://www.youtube.com/embed/M0iO4EI_cOs" frameborder="0"
+					allow="accelerometer;
+					autoplay;
+					encrypted-media; gyroscope; 
+					picture-in-picture"
+					allowfullscreen="allowfullscreen"> 
+				</iframe>
+				
+				<iframe th:if="${productdvelopment}" width="600" height="300"
+					src="https://www.youtube.com/embed/lwCdrO5xM2I" frameborder="0"
+					allow="accelerometer;
+					autoplay;
+					encrypted-media; gyroscope; 
+					picture-in-picture"
+					allowfullscreen="allowfullscreen"> 
+				</iframe>
+				
+				<iframe th:if="${programmer}" width="600" height="300"
+					src="https://www.youtube.com/embed/4ycF689sfCY" frameborder="0"
+					allow="accelerometer;
+					autoplay;
+					encrypted-media; gyroscope; 
+					picture-in-picture"
+					allowfullscreen="allowfullscreen"> 
+				</iframe>
+				
+				<iframe th:if="${doctor}" width="600" height="300"
+					src="https://www.youtube.com/embed/z4hPWGiaq9Y" frameborder="0"
+					allow="accelerometer;
+					autoplay;
+					encrypted-media; gyroscope; 
+					picture-in-picture"
+					allowfullscreen="allowfullscreen"> 
+				</iframe>
+
+				
 			</section>
 			<aside>
 				<h3>人気の転職サイトはこちら</h3>
 				<ul>
 					<li><a href="https://tenshoku.mynavi.jp/">マイナビ転職</a></li>
-					<li><a
-						href="https://doda.jp/?usrclk=PC_logout_commonHeader_logo">doda</a></li>
-					<li><a
-						href="https://www.bizreach.jp/lp/bizreach-08/pc/?trcd=0NMAF0000050_PC_&utm_source=nmaf&utm_medium=alliance&utm_campaign=nmaf">ビズリーチ</a></li>
+					<li><a href="https://doda.jp/?usrclk=PC_logout_commonHeader_logo">doda</a></li>
+					<li><a href="https://www.bizreach.jp/lp/bizreach-08/pc/?trcd=0NMAF0000050_PC_&utm_source=nmaf&utm_medium=alliance&utm_campaign=nmaf">ビズリーチ</a></li>
 				</ul>
 			</aside>
 		</div>
 		<section>
-			<h1>2</h1>
+		
+				<!-- ーーーーーーーーーーNo２動画ーーーーーーーーーー -->
+		
+		
+			<h1 th:text="${job2}">2</h1>
 			<iframe th:if="${instructor}" width="600" height="300"
 				src="https://www.youtube.com/embed/NMB9nbtJuk8" frameborder="0"
 				allow="accelerometer;
-			autoplay;
-			encrypted-media; gyroscope; 
-			picture-in-picture"
-				allowfullscreen="allowfullscreen"> </iframe>
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${sales}" width="600" height="300"
+				src="https://www.youtube.com/embed/U9le9RupONQ" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${secretary}" width="600" height="300"
+				src="https://www.youtube.com/embed/EBzJhbMdBJw" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${hairdresser}" width="600" height="300"
+				src="https://www.youtube.com/embed/ZJpbvYqTHdk" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${dentaltechnician}" width="600" height="300"
+				src="https://www.youtube.com/embed/GhVYm9syKRU" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${researcher}" width="600" height="300"
+				src="https://www.youtube.com/embed/kgOTlX1htjk" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
 		</section>
 
 		<section>
-			<h1>3</h1>
+		
+		
+				<!-- ーーーーーーーーーーNo３動画ーーーーーーーーーー -->
+		
+		
+			<h1 th:text="${job3}">3</h1>
 			<iframe th:if="${counselor}" width="600" height="300"
-				src="https://www.youtube.com/eUOXSfEg8t8" frameborder="0"
+				src="https://www.youtube.com/embed/eUOXSfEg8t8" frameborder="0"
 				allow="accelerometer;
-			autoplay;
-			encrypted-media; gyroscope; 
-			picture-in-picture"
-				allowfullscreen="allowfullscreen"> </iframe>
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${entrepreneur}" width="600" height="300"
+				src="https://www.youtube.com/embed/68Kj4-Fr6KA" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			</iframe>
+			<iframe th:if="${dataentry}" width="600" height="300"
+				src="https://www.youtube.com/embed/uWpBQA5KSfk" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${designer}" width="600" height="300"
+				src="https://www.youtube.com/embed/4FiClVKW5L0" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			<iframe th:if="${trimmer}" width="600" height="300"
+				src="https://www.youtube.com/embed/z7FOfe-mrLE" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+			
+			</iframe>
+			<iframe th:if="${systemengineers}" width="600" height="300"
+				src="https://www.youtube.com/embed/Ob_eykQMsPw" frameborder="0"
+				allow="accelerometer;
+				autoplay;
+				encrypted-media; gyroscope; 
+				picture-in-picture"
+				allowfullscreen="allowfullscreen"> 
+			</iframe>
+
+		
 		</section>
 
 
 	</div>
 	<div class="sankou">
 		<h2>参考になりましたか？</h2>
-		<form action="/point" method="post">
+		<form th:action="@{/home}" method="post">
 			<label><input type="radio" name="point" value="1">はい</label>
 			<label><input type="radio" name="point" value="0">いいえ</label>
 			<p>ご協力ありがとうございます！</p>
@@ -110,35 +266,32 @@
 
 <!-- ---------------セキュリティー追加ーーーーーーーーーー -->
 
+<!-- 消したらエラーが消えた -->
 
-
-<form action="#" th:action="@{/}" th:object="${userData}"
+ <!-- <form action="#" th:action="@{/home}" th:object="${userData}"
 			method="post">
 			<table>
 				<tr>
 					<td>Name:</td>
 					<td><input type="text" th:field="*{name}" /></td>
-					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
-						Error</td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
 				</tr>
 				<tr>
 					<td>E-mail</td>
 					<td><input type="text" th:field="*{mail}" /></td>
-					<td th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">E-mail
-						Error</td>
+					<td th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">E-mail Error</td>
 				</tr>
 				<tr>
 				<tr>
 					<td>Password</td>
 					<td><input type="text" th:field="*{pass}" /></td>
-					<td th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}">Pass
-						Error</td>
+					<td th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}">Pass Error</td>
 				</tr>
 				<tr>
 					<td><button type="submit">Submit</button></td>
 				</tr>
 			</table>
-		</form>
+		</form> -->
 
 
 

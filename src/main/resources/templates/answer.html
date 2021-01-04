@@ -27,7 +27,41 @@
 	</div>
 
 	<div class="Recommended" wrapper>
-		<article>
+	
+	<!-- ーーーー追加要素ーーーー -->
+	
+	<!-- <article>
+			<h3>あなたへのおすすめの職業はこれ</h3>
+			<form action="/video" method="post">
+			<input type="hidden" name="result" th:value="${choose}">
+			<button type="submit"><br>
+			<a href="/video"><span th:text="${job1}"></span>
+			</button>
+			<button type="submit">
+			<a href="/video"><span th:text="${job2}"></span>
+			</button>
+			<button type="submit">
+			<a href="/video"><span th:text="${job3}"></span>
+			</button>
+			
+			</form>
+		</article> -->
+	<article>
+			<h3>あなたへのおすすめの職業はこれ</h3>
+			<ul>
+				<li><span th:text="${job1}"></li>
+				<li><span th:text="${job2}"></li>
+				<li><span th:text="${job3}"></li>
+
+			</ul>
+		</article>
+		
+	<!-- ーーーー追加要素はここまでーーーー -->
+	
+	
+	
+	
+		<!-- <article>
 			<h3>あなたへのおすすめの職業はこれ</h3>
 			<ul>
 				<li><a href="/video"><span th:text="${job1}">〇〇</a></li>
@@ -35,7 +69,7 @@
 				<li><a href="/video"><span th:text="${job3}">〇〇</a></li>
 
 			</ul>
-		</article>
+		</article> -->
 		<aside>
 			<h3>
 				人気の転職サイトはこちら
@@ -48,6 +82,12 @@
 						href="https://www.bizreach.jp/lp/bizreach-08/pc/?trcd=0NMAF0000050_PC_&utm_source=nmaf&utm_medium=alliance&utm_campaign=nmaf">ビズリーチ</a></li>
 				</ul>
 		</aside>
+	</div>
+	<div class="video_post">
+		<form th:action="@{/video}" method="post">
+		<input type="hidden" name="result" th:value="${choose}">
+		<input type ="submit" value="診断結果を見る">
+		</form>
 	</div>
 	<!-- フッターのフラグメントを挿入 -->
 	<div th:include="header :: footer_part">

@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,6 @@
 <title>職業診断</title>
 <link th:href="@{/css/all.css}" rel="stylesheet">
 <link th:href="@{/css/home.css}" rel="stylesheet">
-
 </head>
 <body>
 	<!-- ヘッダーのフラグメントを挿入 -->
@@ -17,7 +16,7 @@
 			<h1>困っている人を見ると放っておけない</h1>
 		</div>
 
-		<form action="/choose2" method="post" class="choose-question-answer">
+		<form th:action="@{/choose2}" method="post" class="choose-question-answer">
 			<input type="radio" name="answer1" value=1> <label>はい</label>
 			<input type="radio" name="answer1" value=0> <label>いいえ</label>
 

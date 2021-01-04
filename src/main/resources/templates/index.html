@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>顧客情報</title>
@@ -30,20 +30,17 @@
 	<!-- ------------------------変更前コードここまで------------------------ -->
 
 <!-- ----------------ログイン画面の追加---------------- -->
-<h2>こんにちは</h2>
-<div th:fragment="logout" sec:authorize="isAuthenticated()">
-    <p>こんにちは:
-        <span sec:authentication="name"></span>さん</p>
-    <p>mail:
-        <span sec:authentication="principal.mailAddress"></span></p>
-    <p>権限:
-        <span sec:authentication="principal.authorities"></span></p>
-    <form action="#" th:action="@{/logout}" method="post">
-        <input type="submit" value="ログアウト" />
-    </form>
-</div>
+	<!-- <h2>こんにちは</h2>
+	<div th:fragment="logout" sec:authorize="isAuthenticated()">
+		<p>こんにちは: <span sec:authentication="name"></span>さん</p>
+		<p>mail: <span sec:authentication="principal.mailAddress"></span></p>
+		<p>権限: <span sec:authentication="principal.authorities"></span></p>
+		<form action="#" th:action="@{/logout}" method="post">
+		<input type="submit" value="ログアウト" />
+		</form>
+	</div> -->
 
-<!-- ----------------ログイン画面の追加ここまで---------------- -->
+	<!-- ----------------ログイン画面の追加ここまで---------------- -->
 
 
 
