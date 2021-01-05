@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
-
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Getter;
@@ -13,8 +12,6 @@ import lombok.Setter;
 
 
 //-------------お問合せフォームの作成---------------
-
-
 
 @Getter
 @Setter

@@ -9,8 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.example.demo.UserData;
-import com.example.demo.UserDataRepository;
+//import com.example.demo.UserData;
+//import com.example.demo.UserDataRepository;
 
 @SpringBootApplication
 public class SpringSecurityAngular {

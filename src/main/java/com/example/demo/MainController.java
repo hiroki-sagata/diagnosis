@@ -405,49 +405,6 @@ public ModelAndView videoPost(ModelAndView mv,
 	mv.setViewName("video");
 	return mv;
 }
-	
-//----------------------------試し---------------------------	
-	
-	
-//	if(result == "A") {
-//		mv.addObject("helper",true);
-//		mv.addObject("instructor",true);
-//		mv.addObject("counselor",true);
-//		System.out.println("Aの動画を３つ表示");
-//	}else if (result == "B") {
-//		mv.addObject("management",true);
-//		mv.addObject("sales",true);
-//		mv.addObject("entrepreneur",true);
-//		
-//	}else if (result == "C") {
-//		mv.addObject("accounting",true);
-//		mv.addObject("secretary",true);
-//		mv.addObject("dataentry",true);
-//		
-//	}else if (result == "D") {
-//		mv.addObject("productdvelopment",true);
-//		mv.addObject("hairdresser",true);
-//		mv.addObject("designer",true);
-//		
-//	}else if (result == "E") {
-//		mv.addObject("programmer",true);
-//		mv.addObject("dentaltechnician",true);
-//		mv.addObject("trimmer",true);
-//		
-//	}else if (result == "F") {
-//		mv.addObject("doctor",true);
-//		mv.addObject("researcher",true);
-//		mv.addObject("systemengineers",true);
-//		
-//	}
-//	mv.setViewName("video");
-//	return mv;
-//}
-
-
-
-
-
 
 
 //---------ユーザー登録---------
@@ -511,13 +468,17 @@ public ModelAndView pointGet(ModelAndView mv) {
 
 //------------ここからお問合せフォーム------------
 
-
+//@RequestMapping("/contact")
+//public ModelAndView contact(ModelAndView mv) {
+//	mv.setViewName("contact");
+//	return mv;
+//}
 
 
 @RequestMapping("/contact")
-public String input(@ModelAttribute("form") Form ContactForm,
+public String contact(@ModelAttribute("form") Form ContactForm,
         Model model, HttpServletRequest request) {
-  model.addAttribute("form",ContactForm);
+		model.addAttribute("form",ContactForm);
      return "contact.html";
 }
 @RequestMapping(value = "/contact", method = RequestMethod.POST)
@@ -532,6 +493,23 @@ BindingResult bindingResult, Model model, HttpServletRequest request) {
     HttpSession session = request.getSession();
     session.setAttribute("form", Form);
     return "redirect:/confirm";
+    
 }
+@RequestMapping("/confirm")
+public String confirm(
+        Model model, HttpServletRequest request) {
 
+    HttpSession session = request.getSession();
+    Form Form = (Form) session.getAttribute("form");
+    model.addAttribute("form",Form);
+    return "confirm.html";
+}
+@RequestMapping("/complete")
+public String complete(
+        @ModelAttribute("form") Form ContactForm,
+        Model model, HttpServletRequest request) {
+
+    model.addAttribute("form",ContactForm );
+    return "complete.html";
+}
 }

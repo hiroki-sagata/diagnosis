@@ -12,7 +12,7 @@
  <div th:include="header :: header_part"></div>
 
  <form th:action="@{/contact}" method="POST" name="form" th:object="${form}">
-     
+
     <p>問い合わせカテゴリー</p>
      <select name="category" th:field="*{category}">
         <option value="">---</option>
