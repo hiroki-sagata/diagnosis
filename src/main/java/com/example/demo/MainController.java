@@ -401,7 +401,7 @@ public ModelAndView videoPost(ModelAndView mv,
 		mv.addObject("systemengineers",true);
 		break;
 	}
-	
+	mv.addObject("userData",new UserData());
 	mv.setViewName("video");
 	return mv;
 }
@@ -438,8 +438,6 @@ public ModelAndView indexGet(ModelAndView mv) {
 
 //---------------ここまでーーーーーーーーーーーーーーーー
 
-//ID セッション
-
 
 
 //-------参考になった数-------
@@ -468,17 +466,10 @@ public ModelAndView pointGet(ModelAndView mv) {
 
 //------------ここからお問合せフォーム------------
 
-//@RequestMapping("/contact")
-//public ModelAndView contact(ModelAndView mv) {
-//	mv.setViewName("contact");
-//	return mv;
-//}
-
-
 @RequestMapping("/contact")
 public String contact(@ModelAttribute("form") Form ContactForm,
         Model model, HttpServletRequest request) {
-		model.addAttribute("form",ContactForm);
+//		model.addAttribute("form", new Form());なくてもいけた
      return "contact.html";
 }
 @RequestMapping(value = "/contact", method = RequestMethod.POST)

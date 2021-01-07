@@ -32,7 +32,7 @@ public class SpringSecurityAngular {
 				user = new UserData();
 				user.setMail("kazz12211@gmail.com");
 				user.setName("Kazuo Tsubaki");
-				user.setPass(passwordEncoder.encode("kt621221"));
+				user.setPass(passwordEncoder.encode("xxx2"));
 				userRepository.save(user);
 			}
 

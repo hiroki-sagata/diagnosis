@@ -154,3 +154,21 @@ aside ul{
 .registragion form {
 	background-color: pink;
 }
+
+
+/* ----------ここからがcontact---------- */
+
+.contact{
+	padding: auto;
+	margin: auto;
+	margin-bottom: 20px;
+	background-color: tomato;
+	width: 50%;
+	text-align: center;
+	align-items: center;
+}
+textarea{
+	width: 90%;
+	height: 10em;
+	margin: auto;
+}

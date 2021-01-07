@@ -219,7 +219,7 @@
 	</div>
 	<div class="sankou">
 		<h2>参考になりましたか？</h2>
-		<form th:action="@{/home}" method="post">
+		<form th:action="@{/point}" method="post">
 			<label><input type="radio" name="point" value="1">はい</label>
 			<label><input type="radio" name="point" value="0">いいえ</label>
 			<p>ご協力ありがとうございます！</p>
@@ -236,24 +236,23 @@
 
 <!-- 消したらエラーが消えた -->
 
- <form action="#" th:action="@{/video}" th:object="${userData}"
-			method="post">
-			<table>
+ <form action="#" th:action="@{/}" th:object="${userData}" method="post">
+			<table><!--th:action="@{/video}にするとcontactでエラーが出ない  -->
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" th:field="*{name}" /></td>
-					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+					<td><input type="text" th:field="*{name}"/></td>
+					<td th:if="${#fields.hasErrors('name')}"th:errors="*{name}">Name Error</td>
 				</tr>
 				<tr>
 					<td>E-mail</td>
-					<td><input type="text" th:field="*{mail}" /></td>
-					<td th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">E-mail Error</td>
+					<td><input type="text" th:field="*{mail}"/></td>
+					<td th:if="${#fields.hasErrors('mail')}"th:errors="*{mail}">E-mail Error</td>
 				</tr>
 				<tr>
 				<tr>
 					<td>Password</td>
 					<td><input type="text" th:field="*{pass}" /></td>
-					<td th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}">Pass Error</td>
+					<td th:if="${#fields.hasErrors('pass')}"th:errors="*{pass}">Pass Error</td>
 				</tr>
 				<tr>
 					<td><button type="submit">Submit</button></td>

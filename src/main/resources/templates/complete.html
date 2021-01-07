@@ -10,7 +10,7 @@
 <body>
 	<!-- ヘッダーのフラグメントを挿入 -->
 	<div th:include="header :: header_part"></div>
-
+<div class="contact" th:object="${form}">
 <form>
 	<p>以下の内容で受け付けました。</p>
 	
@@ -20,7 +20,7 @@
 	<p>問い合わせ内容</p>
 	<p th:text="*{content}">ここに問合せ内容を表示</p>
 </form>
-
+</div>
 	<!-- フッターのフラグメントを挿入 -->
 	<div th:include="header :: footer_part">
 </body>

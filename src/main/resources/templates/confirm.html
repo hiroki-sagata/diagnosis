@@ -11,7 +11,7 @@
 	<!-- ヘッダーのフラグメントを挿入 -->
 	<div th:include="header :: header_part"></div>
 
-
+<div class="contact">
 <form  th:action="@{/complete}" method="POST" name="form" th:object="${form}">
     <p>問い合わせカテゴリー</p>
     <p th:text="*{getCategoryList().get('__*{category}__')}">カテゴリー１</p>
@@ -25,7 +25,7 @@
         <input type="submit" value="送信" />
     </div>
 </form>
-
+</div>
 
 
 	<!-- フッターのフラグメントを挿入 -->

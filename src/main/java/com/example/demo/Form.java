@@ -13,21 +13,37 @@ import lombok.Setter;
 
 //-------------お問合せフォームの作成---------------
 
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Form implements Serializable{
-	@NotBlank(message="選択してね")
+	@NotBlank(message="選択してください")
     private String category;
 
-    @NotBlank(message="何か入力してね")
+    @NotBlank(message="入力されていません")
     @Length(max=1000)
     private String content;
 
-    public Map<String, String> getCategoryList() {
+    public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Map<String, String> getCategoryList() {
     Map<String, String> categoryMap = new LinkedHashMap<String, String>();
-        categoryMap.put("1", "カテゴリー１");
-        categoryMap.put("2", "カテゴリー２");
-        categoryMap.put("3", "カテゴリー３");
+        categoryMap.put("1", "質問");
+        categoryMap.put("2", "間違った内容");
+        categoryMap.put("3", "その他");
         return categoryMap;
     }
 }
