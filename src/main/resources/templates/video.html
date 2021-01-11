@@ -255,10 +255,13 @@
 					<td th:if="${#fields.hasErrors('pass')}"th:errors="*{pass}">Pass Error</td>
 				</tr>
 				<tr>
+				<input type="hidden" name="result" th:value="${choose}">
 					<td><button type="submit">Submit</button></td>
 				</tr>
 			</table>
 		</form>
+		
+		<a href="/user">登録者限定情報はこちら</a>
 
 
 

@@ -36,10 +36,12 @@ private String name;
 
 
 @Column(length = 50, nullable = true)
+@NotBlank
 @Email(message="E-mailアドレスを入力してください")
 private String mail;
 
 @Column(nullable = false)
+@NotBlank
 //@Size(message="パスワードには6文字以上が必要です",min = 6, max= 20)
 private String pass;
 

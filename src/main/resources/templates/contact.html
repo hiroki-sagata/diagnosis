@@ -24,6 +24,7 @@
      <p>問い合わせ内容</p>
       <textarea name="content" placeholder="お問合せ内容を入力してください。" th:field="*{content}"></textarea>
        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">エラーメッセージ</p>
+  	<br>
    <input type="submit" value="確認"/>
  </form>
  </div>

@@ -1,0 +1,138 @@
+.user_title{
+	display:flex;
+	width: 80%;
+	margin: auto;
+	margin-top: 50px;
+}
+.user_title img {
+margin-right: 30px;
+}
+.user_title_image{
+	width: 80%;
+	margin: auto;
+}
+.user_title_image p {
+	text-align: center;
+}
+.user_title_image img {
+	width: 100%;
+}
+.sheet {
+	width: 80%;
+	margin: auto;
+	margin-top: 100px;
+	text-align: center;
+	background-color: rgb(160, 177, 116);
+}
+.sheet h1 {
+	padding-top: 30px;
+}
+.user_point{
+	width: 80%;
+	margin: auto;
+	margin-top: 50px;
+	text-align: center;
+	border: 1px solid red;
+	background-color: bisque;
+}
+
+.user_point p{
+	text-align: left;
+}
+
+.maind {
+	width: 80%;
+	margin: auto;
+	margin-top: 150px;
+	margin-bottom: 100px;
+	padding-bottom: 30px;
+	background-color: rgb(241, 228, 203);
+	text-align: justify;
+}
+.maind_title{
+	text-align:center;
+	background-color: rgb(230, 182, 93);
+	color: white;
+	padding: 40px;
+	margin-top: 50px;
+}
+.maind section {
+	margin: 30px;
+}
+section h3 {
+	margin-top: 70px;
+	background-color: skyblue;
+	line-height: 0%;
+}
+
+
+.ng {
+	width: 80%;
+	margin: auto;
+	margin-top: 150px;
+	margin-bottom: 100px;
+	padding-bottom: 30px;
+	background-color: rgb(193, 255, 234);
+	text-align: justify;
+}
+.ng_title{
+	text-align:center;
+	background-color: rgb(54, 158, 76);
+	color: white;
+	padding: 40px;
+	margin-top: 50px;
+}
+.ng section {
+	margin: 30px;
+}
+
+
+
+
+.end{
+	width: 80%;
+	margin: auto;
+	margin-bottom: 50px;
+}
+.end h3 {
+	text-align: center;
+	border-bottom: 2px solid black;
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+.end span{
+	background-color: rgb(231, 157, 87);
+	color: rgb(243, 44, 44);
+	padding: 10px;
+}
+.download ul li{
+	position: relative;
+	list-style: none;
+	margin: 30px;
+	font-size: 17px;
+}
+.download ul li::after,
+.download ul li::before {
+  display: block;
+  content: '';
+  position: absolute;
+}
+.download ul li::after {
+  top: .35em;
+  left: -1.2em;
+  width: 14px;
+  height: 14px;
+  background-color: #3498db;
+  border-radius: 100%;
+}
+.download ul li::before {
+  z-index: 2;
+  top: .625em;
+  left: -.975em;
+  width: 4px;
+  height: 4px;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

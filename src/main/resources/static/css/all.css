@@ -162,8 +162,8 @@ aside ul{
 	padding: auto;
 	margin: auto;
 	margin-bottom: 20px;
-	background-color: tomato;
-	width: 50%;
+/* 	background-color: tomato;
+ */	width: 50%;
 	text-align: center;
 	align-items: center;
 }

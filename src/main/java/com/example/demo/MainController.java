@@ -120,6 +120,11 @@ public ModelAndView form(ModelAndView mv) {
 	mv.setViewName("form");
 	return mv;
 }
+@RequestMapping("/user")
+public ModelAndView user(ModelAndView mv) {
+	mv.setViewName("/user");
+	return mv;
+}
 
 
 
@@ -344,7 +349,7 @@ public ModelAndView videoPost(ModelAndView mv,
 @RequestParam("result")String resultNumber) {
 	
 	mv.addObject("X",resultNumber);
-	
+	mv.addObject("choose",resultNumber);
 	switch(resultNumber) {
 	case "A":
 		mv.addObject("job1","医療、介護職");
@@ -416,14 +421,56 @@ public String getVideo(UserData userData) {
 }
 
 @PostMapping("/")
-public String checkPersonInfo(@Valid @ModelAttribute ("userData") UserData userData,
-		BindingResult bindingResult) {
-
+public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData userData,
+		BindingResult bindingResult,@RequestParam("result") String A,ModelAndView mv) {
+		System.out.println(A);
+		
+		
   if (bindingResult.hasErrors()) {
-	  return "video";
+	  switch(A) {
+		case "A":
+			mv.addObject("helper",true);
+			mv.addObject("instructor",true);
+			mv.addObject("counselor",true);
+			break;
+		case "B" :
+			
+			mv.addObject("management",true);
+			mv.addObject("sales",true);
+			mv.addObject("entrepreneur",true);
+			break;
+		case "C" :
+			
+			
+			mv.addObject("accounting",true);
+			mv.addObject("secretary",true);
+			mv.addObject("dataentry",true);
+			break;
+		case "D" :
+			
+			mv.addObject("productdvelopment",true);
+			mv.addObject("hairdresser",true);
+			mv.addObject("designer",true);
+			break;
+		case "E" :
+			
+			mv.addObject("programmer",true);
+			mv.addObject("dentaltechnician",true);
+			mv.addObject("trimmer",true);
+			break;
+		case "F" :
+			
+			mv.addObject("doctor",true);
+			mv.addObject("researcher",true);
+			mv.addObject("systemengineers",true);
+			break;
+		}
+	  
+	  mv.setViewName("/video");
+	  return mv;
   }
   repository.saveAndFlush(userData);  
-  return "redirect:/home";
+  return mv;
 }
 
 
@@ -453,7 +500,7 @@ public ModelAndView pointPost(@RequestParam("point") long gdButton,
 	System.out.println("現在の参考になった数は"+gdButton);
 	mv.addObject("points",gdButton);	
 	goodRepository.saveAndFlush(good); 
-	return new ModelAndView("redirect:/point");
+	return new ModelAndView("redirect:/home");
 }
 
 @RequestMapping(value="/point", method = RequestMethod.GET)
@@ -503,4 +550,15 @@ public String complete(
     model.addAttribute("form",ContactForm );
     return "complete.html";
 }
+
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+//登録した情報でログイン出来ない？
+//問い合わせフォームでメールが送れていない？
+
+//送信元の設定メールしてspring　送信するコードをjavaがわでかく（時間がある時に）
+//送信者の元にもメールを飛ばす
+
+
+
+
 }
