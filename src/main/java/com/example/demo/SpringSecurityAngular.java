@@ -15,8 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class SpringSecurityAngular {
 	@Autowired
-	private UserDataRepository userRepository;
+	private UserDataRepository repository;
+	
 
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityAngular.class, args);
 	}
@@ -24,16 +27,33 @@ public class SpringSecurityAngular {
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
-
+//			===============試し===============	
+//			
+//			System.out.println("Insert initial user");
+//			UserData user = (UserData) repository.findByMail(null);
+//			if (user == null) {
+//				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//				user = new UserData();
+//				user.setMail(user.getMail());
+//				user.setName(user.getName());
+//				user.setPass(passwordEncoder.encode(user.getPass()));
+//				repository.save(user);
+//			}
+//
+//		};
+		
+//		===============試し===============	↓を戻したらエラー解消
+		
+		
 			System.out.println("Insert initial user");
-			UserData user = userRepository.findByMail("kazz12211@gmail.com");
+			UserData user = repository.findByMail("kazz12211@gmail.com");
 			if (user == null) {
 				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 				user = new UserData();
 				user.setMail("kazz12211@gmail.com");
 				user.setName("Kazuo Tsubaki");
 				user.setPass(passwordEncoder.encode("xxx2"));
-				userRepository.save(user);
+				repository.save(user);
 			}
 
 		};

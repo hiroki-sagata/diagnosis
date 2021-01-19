@@ -122,7 +122,7 @@ public ModelAndView form(ModelAndView mv) {
 }
 @RequestMapping("/user")
 public ModelAndView user(ModelAndView mv) {
-	mv.setViewName("/user");
+	mv.setViewName("user");
 	return mv;
 }
 
@@ -466,10 +466,10 @@ public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData
 			break;
 		}
 	  
-	  mv.setViewName("/video");
+	  mv.setViewName("video");
 	  return mv;
   }
-  repository.saveAndFlush(userData);  
+  repository.saveAndFlush(userData);
   return mv;
 }
 
@@ -478,7 +478,7 @@ public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData
 public ModelAndView indexGet(ModelAndView mv) {
 	List<UserData>customers = repository.findAll();	
 	mv.addObject("customers",customers);
-	mv.setViewName("index");
+	mv.setViewName("/");
 	return mv;
 }
 
@@ -517,7 +517,7 @@ public ModelAndView pointGet(ModelAndView mv) {
 public String contact(@ModelAttribute("form") Form ContactForm,
         Model model, HttpServletRequest request) {
 //		model.addAttribute("form", new Form());なくてもいけた
-     return "contact.html";
+     return "contact";
 }
 @RequestMapping(value = "/contact", method = RequestMethod.POST)
 public String input(@Valid @ModelAttribute("form") Form Form,
@@ -525,7 +525,7 @@ BindingResult bindingResult, Model model, HttpServletRequest request) {
 
     // エラーがある場合、自画面遷移する
     if (bindingResult.hasErrors()) {
-        return "contact.html";
+        return "contact";
     }
 
     HttpSession session = request.getSession();
@@ -540,7 +540,7 @@ public String confirm(
     HttpSession session = request.getSession();
     Form Form = (Form) session.getAttribute("form");
     model.addAttribute("form",Form);
-    return "confirm.html";
+    return "confirm";
 }
 @RequestMapping("/complete")
 public String complete(
@@ -548,17 +548,14 @@ public String complete(
         Model model, HttpServletRequest request) {
 
     model.addAttribute("form",ContactForm );
-    return "complete.html";
+    return "complete";
 }
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //登録した情報でログイン出来ない？
 //問い合わせフォームでメールが送れていない？
-
 //送信元の設定メールしてspring　送信するコードをjavaがわでかく（時間がある時に）
 //送信者の元にもメールを飛ばす
-
-
 
 
 }

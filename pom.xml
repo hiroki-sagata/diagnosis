@@ -97,7 +97,13 @@
 		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 		
+		<!-- MySQL接続ように追加 -->
 		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- MySQL様に追加 -->
 <!-- 	ーーーーーーーーーーーーーーーここから追加ーーーーーーーーーーーーーーーー -->
 		
 		
