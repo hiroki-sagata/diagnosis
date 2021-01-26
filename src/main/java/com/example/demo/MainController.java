@@ -470,7 +470,7 @@ public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData
 	  return mv;
   }
   repository.saveAndFlush(userData);
-  return mv;
+  return new ModelAndView("redirect:/home");
 }
 
 
@@ -478,7 +478,7 @@ public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData
 public ModelAndView indexGet(ModelAndView mv) {
 	List<UserData>customers = repository.findAll();	
 	mv.addObject("customers",customers);
-	mv.setViewName("/");
+	mv.setViewName("index");
 	return mv;
 }
 
@@ -553,6 +553,8 @@ public String complete(
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //登録した情報でログイン出来ない？
+
+//				（↓は後回しで良い）
 //問い合わせフォームでメールが送れていない？
 //送信元の設定メールしてspring　送信するコードをjavaがわでかく（時間がある時に）
 //送信者の元にもメールを飛ばす

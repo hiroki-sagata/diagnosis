@@ -14,4 +14,3 @@ JpaRepository<UserData, Long>{
 	public UserData findByMail(String mail);
 	
 }
-

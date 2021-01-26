@@ -17,18 +17,31 @@ public class SpringSecurityAngular {
 	@Autowired
 	private UserDataRepository repository;
 	
-
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityAngular.class, args);
 	}
-
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
+			
+			System.out.println("Insert initial user");
+			UserData user = repository.findByMail("");
+			if (user == null) {
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				user = new UserData();
+				user.setMail("kazz12211@gmail.com");
+				user.setName("Kazuo Tsubaki");
+				user.setPass(passwordEncoder.encode("xxx2"));
+				repository.save(user);
+			}
+			
+		};
+//		===============試し===============↑を戻したらエラー解消
+		
+		
+		
+		
 //			===============試し===============	
-//			
 //			System.out.println("Insert initial user");
 //			UserData user = (UserData) repository.findByMail(null);
 //			if (user == null) {
@@ -41,21 +54,19 @@ public class SpringSecurityAngular {
 //			}
 //
 //		};
+//			System.out.println("Insert initial user");
+//			UserData user = repository.findByMail(null);
+//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//			if (user == null) {
+//				user = new UserData();
+//				user.setMail("kazz12211@gmail.com");
+//				user.setName("Kazuo Tsubaki");
+//				user.setPass(passwordEncoder.encode("xxx2"));
+//				repository.save(user);
+//			}
+//
+//		};
 		
-//		===============試し===============	↓を戻したらエラー解消
 		
-		
-			System.out.println("Insert initial user");
-			UserData user = repository.findByMail("kazz12211@gmail.com");
-			if (user == null) {
-				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				user = new UserData();
-				user.setMail("kazz12211@gmail.com");
-				user.setName("Kazuo Tsubaki");
-				user.setPass(passwordEncoder.encode("xxx2"));
-				repository.save(user);
-			}
-
-		};
 	}
 }
