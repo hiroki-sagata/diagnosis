@@ -12,11 +12,19 @@ import javax.persistence.Table;
 @Table
 public class GoodButton {
 
-@Id @GeneratedValue(strategy = GenerationType.AUTO)
+@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+@Column
+private long id;
+
 
 @Column(nullable = false)
 private long point;
 
 public long getPoint() { return point; }
 public void setPoint(long point) {this.point = point; }
+
+
+public long getId() { return id; }
+public void setId(long id) {this.id = id; }
 }

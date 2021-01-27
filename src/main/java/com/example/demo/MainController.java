@@ -2,21 +2,34 @@ package com.example.demo;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+
 
 @Controller
-
-public class MainController {
+public class MainController 
+//implements WebMvcConfigurer    //追加-------------
+{
 @Autowired
 UserDataRepository repository;
 @Autowired
@@ -26,7 +39,7 @@ GoodButtonRepository goodRepository;
 @PostConstruct
 public void init() {
 GoodButton good = new GoodButton();
-good.setPoint(1);
+good.setPoint(0);
 goodRepository.saveAndFlush(good);
 }
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -71,11 +84,11 @@ public ModelAndView choose6(ModelAndView mv) {
 mv.setViewName("choose6");
 return mv;
 }
-@RequestMapping("/contact")
-public ModelAndView contact(ModelAndView mv) {
-	mv.setViewName("contact");
-	return mv;
-}
+//@RequestMapping("/contact")
+//public ModelAndView contact(ModelAndView mv) {
+//	mv.setViewName("contact");
+//	return mv;
+//}
 @RequestMapping("/header")
 public ModelAndView header(ModelAndView mv) {
 	mv.setViewName("header");
@@ -102,6 +115,21 @@ public ModelAndView point(ModelAndView mv) {
 	mv.setViewName("point");
 	return mv;
 }
+@RequestMapping("/form")
+public ModelAndView form(ModelAndView mv) {
+	mv.setViewName("form");
+	return mv;
+}
+@RequestMapping("/user")
+public ModelAndView user(ModelAndView mv) {
+	mv.setViewName("user");
+	return mv;
+}
+
+
+
+
+
 //-----ここまでで表示させている-----
 
 
@@ -204,15 +232,17 @@ total6 = answer1 + answer2+ answer3 + answer4 + answer5 + answer6 + answer7;
 System.out.println("シートFの「はい」の数は"+total6);
 
 int maxScore = 0;
-
+String answerSheet = null;
 int [] score = {total1,total2,total3,total4,total5,total6};
 for(int i= 0; i < score.length; i++) {
 	if(maxScore < score[i]) {
 		maxScore = score[i];
 		System.out.println("現在の最大値は"+maxScore);
 	}
-	
-}System.out.println("最大値は"+maxScore);
+}
+
+
+
 
 
 
@@ -225,24 +255,28 @@ if(maxScore == total1) {
 	String sheetA = "あなたは「サポーター」タイプ";
 	String sheetAAnswer = "あなたは人と接し、相手が喜んでくれることや、誰かの役に立つことに喜びを感じるタイプ。自分の利益を追求するよりも人をサポートし、その人が幸せになることで、あなた自身もハッピーになるのでは？ 社会貢献やボランティア活動などへの意識も高く、人に何かを教えることも好きなはず。\n"
 			+ "\n"
-			+ "　ただ、いつも周囲の人間関係や友人関係に気を配って、どこか気疲れしてしまうことが多いかもしれません。利益や売り上げの数字を重視する風土の組織では、ストレスが溜まることも少なくないでしょう。おすすめは誰かをサポートする医療や介護系などの職種。これに向けた資格を目指してみては。";
+			+ "ただ、いつも周囲の人間関係や友人関係に気を配って、どこか気疲れしてしまうことが多いかもしれません。利益や売り上げの数字を重視する風土の組織では、ストレスが溜まることも少なくないでしょう。おすすめは誰かをサポートする医療や介護系などの職種。これに向けた資格を目指してみては。";
 	mv.addObject("type",sheetA);
 	mv.addObject("type_answer",sheetAAnswer);
 	mv.addObject("job1","医療、介護職");
 	mv.addObject("job2","インストラクター、教育");
 	mv.addObject("job3","コールセンター、カウンセリング職");
+	answerSheet = "A";
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total2) {
 	System.out.println("Bのシートが最大");
 	String sheetB = "あなたは「リーダー」タイプ";
 	String sheetBAnswer = "あなたは組織の中でリーダーシップを取って、目的に向かって邁進していくことに喜びを感じるタイプ。組織をまとめたり、企業経営にも関心が高く、積極的に昇進・昇格したいと思っている傾向もあるよう。\n"
 			+ "\n"
-			+ "　自信家で周囲からは指導力があると言われることも多く、社外でも高い社会的地位を得たいと思っていない？ 話術にも長けており、他人と議論をしても、多くの場合は相手を説き伏せて自分の意見を通すみたい。内心そのことに喜びを感じている人が多そう。独立志向も持つあなたは、経営に役立つ中小企業診断士、MBAといった難しい資格にチャレンジもしてみて！";
+			+ "自信家で周囲からは指導力があると言われることも多く、社外でも高い社会的地位を得たいと思っていない？ 話術にも長けており、他人と議論をしても、多くの場合は相手を説き伏せて自分の意見を通すみたい。内心そのことに喜びを感じている人が多そう。独立志向も持つあなたは、経営に役立つ中小企業診断士、MBAといった難しい資格にチャレンジもしてみて！";
 	mv.addObject("type",sheetB);
 	mv.addObject("type_answer",sheetBAnswer);
 	mv.addObject("job1","管理職全般");
 	mv.addObject("job2","営業、企画、人事・労務");
 	mv.addObject("job3","起業家");
+	answerSheet = "B";
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total3) {
 	System.out.println("Cのシートが最大");
@@ -255,6 +289,8 @@ if(maxScore == total1) {
 	mv.addObject("job1","一般事務、経理");
 	mv.addObject("job2","秘書、税理士");
 	mv.addObject("job3","数字やデータ処理系");
+	answerSheet = "C";
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total4) {
 	System.out.println("Dのシートが最大");
@@ -267,6 +303,9 @@ if(maxScore == total1) {
 	mv.addObject("job1","商品開発");
 	mv.addObject("job2","美容師");
 	mv.addObject("job3","デザイナー");
+	answerSheet = "D";
+	mv.addObject("choose",answerSheet);
+	
 	
 }else if(maxScore == total5) {
 	System.out.println("Eのシートが最大");
@@ -279,6 +318,8 @@ if(maxScore == total1) {
 	mv.addObject("job1","プログラマー、CADオペレーター");
 	mv.addObject("job2","歯科技師");
 	mv.addObject("job3","トリマー");
+	answerSheet = "E";
+	mv.addObject("choose",answerSheet);
 	
 }else if(maxScore == total6) {
 	System.out.println("Fのシートが最大");
@@ -291,65 +332,232 @@ if(maxScore == total1) {
 	mv.addObject("job1","医師");
 	mv.addObject("job2","研究者");
 	mv.addObject("job3","SE（システムエンジニア）");
+	answerSheet = "F";
+	mv.addObject("choose",answerSheet);
+	
 }
 
 mv.addObject("maxSheet",maxScore);
+
 mv.setViewName("answer");
 return mv;
 }
 
+//---------ビデオページの診断結果別表示試し---------
+@RequestMapping(value="/video", method = RequestMethod.POST )
+public ModelAndView videoPost(ModelAndView mv,
+@RequestParam("result")String resultNumber) {
+	
+	mv.addObject("X",resultNumber);
+	mv.addObject("choose",resultNumber);
+	switch(resultNumber) {
+	case "A":
+		mv.addObject("job1","医療、介護職");
+		mv.addObject("job2","インストラクター、教育");
+		mv.addObject("job3","コールセンター、カウンセリング職");
+		
+		mv.addObject("helper",true);
+		mv.addObject("instructor",true);
+		mv.addObject("counselor",true);
+		break;
+	case "B" :
+		mv.addObject("job1","管理職全般");
+		mv.addObject("job2","営業、企画、人事・労務");
+		mv.addObject("job3","起業家");
+		
+		mv.addObject("management",true);
+		mv.addObject("sales",true);
+		mv.addObject("entrepreneur",true);
+		break;
+	case "C" :
+		mv.addObject("job1","一般事務、経理");
+		mv.addObject("job2","秘書、税理士");
+		mv.addObject("job3","数字やデータ処理系");
+		
+		mv.addObject("accounting",true);
+		mv.addObject("secretary",true);
+		mv.addObject("dataentry",true);
+		break;
+	case "D" :
+		mv.addObject("job1","商品開発");
+		mv.addObject("job2","美容師");
+		mv.addObject("job3","デザイナー");
+		
+		mv.addObject("productdvelopment",true);
+		mv.addObject("hairdresser",true);
+		mv.addObject("designer",true);
+		break;
+	case "E" :
+		mv.addObject("job1","プログラマー、CADオペレーター");
+		mv.addObject("job2","歯科技師");
+		mv.addObject("job3","トリマー");
+		
+		mv.addObject("programmer",true);
+		mv.addObject("dentaltechnician",true);
+		mv.addObject("trimmer",true);
+		break;
+	case "F" :
+		mv.addObject("job1","医師");
+		mv.addObject("job2","研究者");
+		mv.addObject("job3","SE（システムエンジニア）");
+		
+		mv.addObject("doctor",true);
+		mv.addObject("researcher",true);
+		mv.addObject("systemengineers",true);
+		break;
+	}
+	mv.addObject("userData",new UserData());
+	mv.setViewName("video");
+	return mv;
+}
 
 
 //---------ユーザー登録---------
 
+@GetMapping("/video")
+public String getVideo(UserData userData) {
 
+  return "video";
+}
+
+@PostMapping("/")
+public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData userData,
+		BindingResult bindingResult,@RequestParam("result") String A,ModelAndView mv) {
+		System.out.println(A);
+		
+		
+  if (bindingResult.hasErrors()) {
+	  switch(A) {
+		case "A":
+			mv.addObject("helper",true);
+			mv.addObject("instructor",true);
+			mv.addObject("counselor",true);
+			break;
+		case "B" :
+			
+			mv.addObject("management",true);
+			mv.addObject("sales",true);
+			mv.addObject("entrepreneur",true);
+			break;
+		case "C" :
+			
+			
+			mv.addObject("accounting",true);
+			mv.addObject("secretary",true);
+			mv.addObject("dataentry",true);
+			break;
+		case "D" :
+			
+			mv.addObject("productdvelopment",true);
+			mv.addObject("hairdresser",true);
+			mv.addObject("designer",true);
+			break;
+		case "E" :
+			
+			mv.addObject("programmer",true);
+			mv.addObject("dentaltechnician",true);
+			mv.addObject("trimmer",true);
+			break;
+		case "F" :
+			
+			mv.addObject("doctor",true);
+			mv.addObject("researcher",true);
+			mv.addObject("systemengineers",true);
+			break;
+		}
+	  
+	  mv.setViewName("video");
+	  return mv;
+  }
+  repository.saveAndFlush(userData);
+  return new ModelAndView("redirect:/home");
+}
 
 
 @RequestMapping(value="/", method = RequestMethod.GET)
 public ModelAndView indexGet(ModelAndView mv) {
-	List<UserData>customers = repository.findAll();
-//	Optional<GoodButton> gp = goodRepository.findOne(long point){
-//	GoodButton gp = new GoodButton();
-//	gp.setPoint();
-//	goodRepository.point = 
-//	mv.addObject("point",point);
-//	mv.addObject("point",gp.get());
-	
+	List<UserData>customers = repository.findAll();	
 	mv.addObject("customers",customers);
 	mv.setViewName("index");
 	return mv;
 }
-@RequestMapping(value="/",method = RequestMethod.POST)
-public ModelAndView indexPost(@ModelAttribute("formModel") UserData
-userData,ModelAndView mv) {
-repository.saveAndFlush(userData);
-return new ModelAndView("redirect:/");
-}
-//@PostConstruct
-//public void init() {   
-//GoodButton good = new GoodButton();
-//good.setPoint(1);
-//goodRepository.saveAndFlush(good);
-//}
+
+
+//---------------ここまでーーーーーーーーーーーーーーーー
+
+
+
+//-------参考になった数-------
+
+
 @RequestMapping(value="/point",method = RequestMethod.POST)
 public ModelAndView pointPost(@RequestParam("point") long gdButton,
-ModelAndView mv) {
-GoodButton good2 = goodRepository.findById((long)1).get();
-gdButton += good2.getPoint();
-good2.setPoint(gdButton);
-System.out.println(good2);
-goodRepository.saveAndFlush(good2);
-mv.addObject("points",good2.getPoint());
-return new ModelAndView("redirect:/point");
+		ModelAndView mv) {
+	GoodButton good = goodRepository.findById((long)1).get();
+	gdButton += good.getPoint();
+	good.setPoint(gdButton);
+	
+	System.out.println("現在の参考になった数は"+gdButton);
+	mv.addObject("points",gdButton);	
+	goodRepository.saveAndFlush(good); 
+	return new ModelAndView("redirect:/home");
 }
-//}
-//@RequestMapping(value="/side",method = RequestMethod.POST)
-//public ModelAndView sidePost(@RequestParam("point") long gdButton,
-//		ModelAndView mv) {
-//	long x = 0;
-//	x += gdButton;
-//	mv.addObject("points",x);
-//	mv.setViewName("/side");
-//	return mv;
-//}
+
+@RequestMapping(value="/point", method = RequestMethod.GET)
+public ModelAndView pointGet(ModelAndView mv) {
+	GoodButton good = goodRepository.findById((long)1).get();
+	mv.addObject("points",good.getPoint());
+	mv.setViewName("point");
+	return mv;
+}
+
+//------------ここからお問合せフォーム------------
+
+@RequestMapping("/contact")
+public String contact(@ModelAttribute("form") Form ContactForm,
+        Model model, HttpServletRequest request) {
+//		model.addAttribute("form", new Form());なくてもいけた
+     return "contact";
+}
+@RequestMapping(value = "/contact", method = RequestMethod.POST)
+public String input(@Valid @ModelAttribute("form") Form Form,
+BindingResult bindingResult, Model model, HttpServletRequest request) {
+
+    // エラーがある場合、自画面遷移する
+    if (bindingResult.hasErrors()) {
+        return "contact";
+    }
+
+    HttpSession session = request.getSession();
+    session.setAttribute("form", Form);
+    return "redirect:/confirm";
+    
+}
+@RequestMapping("/confirm")
+public String confirm(
+        Model model, HttpServletRequest request) {
+
+    HttpSession session = request.getSession();
+    Form Form = (Form) session.getAttribute("form");
+    model.addAttribute("form",Form);
+    return "confirm";
+}
+@RequestMapping("/complete")
+public String complete(
+        @ModelAttribute("form") Form ContactForm,
+        Model model, HttpServletRequest request) {
+
+    model.addAttribute("form",ContactForm );
+    return "complete";
+}
+
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+//登録した情報でログイン出来ない？
+
+//				（↓は後回しで良い）
+//問い合わせフォームでメールが送れていない？
+//送信元の設定メールしてspring　送信するコードをjavaがわでかく（時間がある時に）
+//送信者の元にもメールを飛ばす
+
+
 }

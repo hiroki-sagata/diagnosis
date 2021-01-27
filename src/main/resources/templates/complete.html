@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>職業診断</title>
+<title>送信完了</title>
 <link th:href="@{/css/all.css}" rel="stylesheet">
 <link th:href="@{/css/home.css}" rel="stylesheet">
 </head>
-
 <body>
 	<!-- ヘッダーのフラグメントを挿入 -->
 	<div th:include="header :: header_part"></div>
-	<div class="home">
-		<h2>
-			やりたい仕事<br> きっと見つかる
-		</h2>
-	</div>
-	<div class="start-button">
-		<a href="/choose">診断を始める</a>
-	</div>
+<div class="contact" th:object="${form}">
+<form>
+	<p>以下の内容で受け付けました。</p>
+	
+	<p>問い合わせカテゴリー</p>
+	<p th:text="*{getCategoryList().get('__*{category}__')}">カテゴリー１</p>
+	
+	<p>問い合わせ内容</p>
+	<p th:text="*{content}">ここに問合せ内容を表示</p>
+</form>
+</div>
 	<!-- フッターのフラグメントを挿入 -->
 	<div th:include="header :: footer_part">
 </body>

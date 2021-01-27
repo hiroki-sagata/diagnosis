@@ -1,86 +1,85 @@
-
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>職業診断</title>
-    <link th:href="@{/css/all.css}" rel="stylesheet">
-    <link th:href="@{/css/home.css}" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>職業診断</title>
+<link th:href="@{/css/all.css}" rel="stylesheet">
+<link th:href="@{/css/home.css}" rel="stylesheet">
 </head>
 <body>
-    <!-- ヘッダーのフラグメントを挿入 -->
-    <div th:include="header :: header_part"></div>
-    <div class="choose">
-        <p>Q1</p>
-        <div class="choose-question">
-            <h1>ルールにはできるだけ従いたいほう</h1>
-        </div>
-        
-        <form action="/choose4" method="post" class="choose-question-answer">　
-            <input type="hidden" name="sheet-point1" th:value="${sp1}"> 
-            <input type="hidden" name="sheet-point2" th:value="${sp2}"> 
-            <input type="radio" name="answer3-1" value=1> <label>はい</label>
-            <input type="radio" name="answer3-1" value=0> <label>いいえ</label>
+	<!-- ヘッダーのフラグメントを挿入 -->
+	<div th:include="header :: header_part"></div>
+	<div class="choose">
+		<p>Q1</p>
+		<div class="choose-question">
+			<h1>ルールにはできるだけ従いたいほう</h1>
+		</div>
 
-        <p>Q2</p>
-        <div class="choose-question">
-            <h1>お金の計算、管理が好き</h1>
-        </div>
-            <input type="radio" name="answer3-2" value=1> <label>はい</label>
-            <input type="radio" name="answer3-2" value=0> <label>いいえ</label>
-       
+		<form th:action="@{/choose4}" method="post" class="choose-question-answer">
+			<input type="hidden" name="sheet-point1" th:value="${sp1}"> 
+			<input type="hidden" name="sheet-point2" th:value="${sp2}"> 
+			<input type="radio" name="answer3-1" value=1> <label>はい</label> 
+			<input type="radio" name="answer3-1" value=0> <label>いいえ</label>
 
-        <p>Q3</p>
-        <div class="choose-question">
-            <h1>テータや文書の作成・整理が得意</h1>
-        </div>
-            <input type="radio" name="answer3-3" value=1> <label>はい</label>
-            <input type="radio" name="answer3-3" value=0> <label>いいえ</label>
-     
+			<p>Q2</p>
+			<div class="choose-question">
+				<h1>お金の計算、管理が好き</h1>
+			</div>
+			<input type="radio" name="answer3-2" value=1> <label>はい</label>
+			<input type="radio" name="answer3-2" value=0> <label>いいえ</label>
 
-        <p>Q4</p>
-        <div class="choose-question">
-            <h1>日記・ブログ更新など毎日続けていることがある</h1>
-        </div>　
-            <input type="radio" name="answer3-4" value=1> <label>はい</label>
-            <input type="radio" name="answer3-4" value=0> <label>いいえ</label>
-            
 
-        <p>Q5</p>
-        <div class="choose-question">
-            <h1>時間や締め切りを守るのは当然のことだ</h1>
-        </div>
-            <input type="radio" name="answer3-5" value=1> <label>はい</label>
-            <input type="radio" name="answer3-5" value=0> <label>いいえ</label>
-        
-        
-        <p>Q6</p>
-        <div class="choose-question">
-            <h1>けっこう小まめにメモを取る</h1>
-        </div>
-            <input type="radio" name="answer3-6" value=1> <label>はい</label>
-            <input type="radio" name="answer3-6" value=0> <label>いいえ</label>
-           
-        
-        
-        <p>Q7</p>
-        <div class="choose-question">
-            <h1>何をするにも事前の準備・計算は欠かせない</h1>
-        </div>
-            <input type="radio" name="answer3-7" value=1> <label>はい</label>
-            <input type="radio" name="answer3-7" value=0> <label>いいえ</label>
-     		
-     		<p>間違いがなければ送信ボタンを押して次の質問へ！</p>
-     		<input type="submit" value="送信">
-       
-        </form>
+			<p>Q3</p>
+			<div class="choose-question">
+				<h1>テータや文書の作成・整理が得意</h1>
+			</div>
+			<input type="radio" name="answer3-3" value=1> <label>はい</label>
+			<input type="radio" name="answer3-3" value=0> <label>いいえ</label>
+
+
+			<p>Q4</p>
+			<div class="choose-question">
+				<h1>日記・ブログ更新など毎日続けていることがある</h1>
+			</div>
+			<input type="radio" name="answer3-4" value=1> <label>はい</label>
+			<input type="radio" name="answer3-4" value=0> <label>いいえ</label>
+
+
+			<p>Q5</p>
+			<div class="choose-question">
+				<h1>時間や締め切りを守るのは当然のことだ</h1>
+			</div>
+			<input type="radio" name="answer3-5" value=1> <label>はい</label>
+			<input type="radio" name="answer3-5" value=0> <label>いいえ</label>
+
+
+			<p>Q6</p>
+			<div class="choose-question">
+				<h1>けっこう小まめにメモを取る</h1>
+			</div>
+			<input type="radio" name="answer3-6" value=1> <label>はい</label>
+			<input type="radio" name="answer3-6" value=0> <label>いいえ</label>
 
 
 
+			<p>Q7</p>
+			<div class="choose-question">
+				<h1>何をするにも事前の準備・計算は欠かせない</h1>
+			</div>
+			<input type="radio" name="answer3-7" value=1> <label>はい</label>
+			<input type="radio" name="answer3-7" value=0> <label>いいえ</label>
 
-    </div>
-     <!-- フッターのフラグメントを挿入 -->
-	  <div th:include="header :: footer_part">   
+			<p>間違いがなければ送信ボタンを押して次の質問へ！</p>
+			<input type="submit" value="送信">
+
+		</form>
+
+
+
+
+	</div>
+	<!-- フッターのフラグメントを挿入 -->
+	<div th:include="header :: footer_part">
 </body>
 </html>

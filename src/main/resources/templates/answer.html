@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>職業診断</title>
-    <link th:href="@{/css/all.css}" rel="stylesheet">
-    <link th:href="@{/css/home.css}" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>職業診断</title>
+<link th:href="@{/css/all.css}" rel="stylesheet">
+<link th:href="@{/css/home.css}" rel="stylesheet">
 
 </head>
 <body>
+	
+	
+	<h1 th:text="${sheet}"></h1> <!--値が渡っているか確認用  -->
+	<h1 th:text="${maxSheet}"></h1>
+	<!-- ヘッダーのフラグメントを挿入 -->
+	<div th:include="header :: header_part"></div>
 
- <h1 th:text="${maxSheet}"></h1>
-    <!-- ヘッダーのフラグメントを挿入 -->
-    <div th:include="header :: header_part"></div>
+	<div class="answer">
+		<div class="coment">
+			<h1 th:text="${type}">あなたは縁の下の力持ちタイプ！</h1>
+			<p th:text="${type_answer}">普段はあまり目立ちにくいが仕事を成し遂げる際に必ず周りの人を助け、
+				成功へ導いていくことが得意。でも自分がリーダー格になった場合は のプレッシャーとこれまでの周りの反応との違いに困惑し自分を追い詰め
+				てしまう可能性があるので、上司と部下の橋渡しが得意な人だ！</p>
+		</div>
+		<img src="image/other job.jpg" alt="職業画">
+	</div>
 
-    <div class="answer">
-        <div class="coment">
-        <h1 th:text="${type}">あなたは縁の下の力持ちタイプ！</h1>
-        <p th:text="${type_answer}">普段はあまり目立ちにくいが仕事を成し遂げる際に必ず周りの人を助け、
-            成功へ導いていくことが得意。でも自分がリーダー格になった場合は
-            のプレッシャーとこれまでの周りの反応との違いに困惑し自分を追い詰め
-            てしまう可能性があるので、上司と部下の橋渡しが得意な人だ！</p>
-        </div>
-        <img src="image/other job.jpg" alt="職業画">
-    </div>
+	<div class="Recommended" wrapper>
+	
+	<article>
+			<h3>あなたへのおすすめの職業はこれ</h3>
+			<ul>
+				<li><span th:text="${job1}"></li>
+				<li><span th:text="${job2}"></li>
+				<li><span th:text="${job3}"></li>
 
-    <div class="Recommended" wrapper>
-    <article>
-        <h3>あなたへのおすすめの職業はこれ</h3>
-        <ul>
-            <li><a href="/video"><span th:text="${job1}">〇〇</a></li>
-            <li><a href="/video"><span th:text="${job2}">〇〇</a></li>
-            <li><a href="/video"><span th:text="${job3}">〇〇</a></li>
-          
-        </ul>
-        </article>
-        <aside>
-        <h3>人気の転職サイトはこちら</h2>
-        <ul>
-        	<li><a href="https://tenshoku.mynavi.jp/">マイナビ転職</a></li>
-        	<li><a href="https://doda.jp/?usrclk=PC_logout_commonHeader_logo">doda</a></li>
-        	<li><a href="https://www.bizreach.jp/lp/bizreach-08/pc/?trcd=0NMAF0000050_PC_&utm_source=nmaf&utm_medium=alliance&utm_campaign=nmaf">ビズリーチ</a></li>
-        </ul>
-        </aside>
-    </div>
-     <!-- フッターのフラグメントを挿入 -->
-    <div th:include="header :: footer_part">  
+			</ul>
+		</article>
+	
+
+		<aside>
+			<h3>
+				人気の転職サイトはこちら
+				</h2>
+				<ul>
+					<li><a href="https://tenshoku.mynavi.jp/">マイナビ転職</a></li>
+					<li><a
+						href="https://doda.jp/?usrclk=PC_logout_commonHeader_logo">doda</a></li>
+					<li><a
+						href="https://www.bizreach.jp/lp/bizreach-08/pc/?trcd=0NMAF0000050_PC_&utm_source=nmaf&utm_medium=alliance&utm_campaign=nmaf">ビズリーチ</a></li>
+				</ul>
+		</aside>
+	</div>
+	<div class="video_post">
+		<form th:action="@{/video}" method="post">
+		<input type="hidden" name="result" th:value="${choose}">
+		<input type ="submit" value="診断結果を見る">
+		</form>
+	</div>
+	<!-- フッターのフラグメントを挿入 -->
+	<div th:include="header :: footer_part">
 </body>
 </html>
