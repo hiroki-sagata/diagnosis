@@ -19,7 +19,7 @@ import com.sun.istack.NotNull;
 
 
 @Entity
-@Table
+@Table(name="spring_test")
 public class UserData{
 	
 	

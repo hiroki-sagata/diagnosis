@@ -11,7 +11,7 @@ JpaRepository<UserData, Long>{
 	
 	//↓↓↓--------------mysql接続用に作成----------------↓↓↓
 
-//public interface UserRepository extends CrudRepository<UserData,Long>{}
+public interface UserRepository extends CrudRepository<UserData,Long>{}
 	
 	
 	

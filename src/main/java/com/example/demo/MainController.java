@@ -36,12 +36,12 @@ UserDataRepository repository;
 GoodButtonRepository goodRepository;
 
 //ーーーーーーーーーデフォルトでDBに登録された状態にできるーーーーーーーーーー
-@PostConstruct
-public void init() {
-GoodButton good = new GoodButton();
-good.setPoint(0);
-goodRepository.saveAndFlush(good);
-}
+//@PostConstruct
+//public void init() {
+//GoodButton good = new GoodButton();
+//good.setPoint(0);
+//goodRepository.saveAndFlush(good);
+//}
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 @RequestMapping("/")
