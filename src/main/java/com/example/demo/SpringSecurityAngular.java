@@ -24,16 +24,17 @@ public class SpringSecurityAngular {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
 			
-			System.out.println("Insert initial user");
-			UserData user = repository.findByMail("");
-			if (user == null) {
-				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				user = new UserData();
-				user.setMail("kazz12211@gmail.com");
-				user.setName("Kazuo Tsubaki");
-				user.setPass(passwordEncoder.encode("xxx2"));
-				repository.save(user);
-			}
+//			System.out.println("Insert initial user");
+//			UserData user = repository.findByMail("");
+//			if (user == null) {
+//				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//				user = new UserData();
+//				user.setMail("kazz12211@gmail.com");
+//				user.setName("Kazuo Tsubaki");
+////			user.setPass(passwordEncoder.encode("xxx2"));
+//				user.setPass("xxx2");
+//				repository.save(user);
+//			}
 			
 		};
 //		===============試し===============↑を戻したらエラー解消

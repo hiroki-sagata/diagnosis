@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -469,6 +470,14 @@ public ModelAndView checkPersonInfo(@Valid @ModelAttribute ("userData") UserData
 	  mv.setViewName("video");
 	  return mv;
   }
+  
+//登録データでのログイン機能を追加
+  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+  userData.setPass(passwordEncoder.encode(userData.getPass()));
+  
+//登録データでのログイン機能を追加 ここまで-----------
+  
+
   repository.saveAndFlush(userData);
   return new ModelAndView("redirect:/home");
 }
@@ -552,7 +561,7 @@ public String complete(
 }
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-//登録した情報でログイン出来ない？
+
 
 //				（↓は後回しで良い）
 //問い合わせフォームでメールが送れていない？
