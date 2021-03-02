@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>顧客情報</title>
+<link th:href="@{/css/all.css}" rel="stylesheet">
+<link th:href="@{/css/home.css}" rel="stylesheet">
+</head>
+<body>
+
+	<h1>これまでのコメント</h1>
+	<table>
+		<tr>
+			<th>コメント番号</th>
+			<th>一覧</th>
+		
+		</tr>
+		<tr th:each="content: ${contentList}">
+			<td th:text="${content.id}"></td>
+			<td th:text="${content.content}"></td>
+			<td>
+			<form method="post" th:action="@{/deleteMyContent}">
+			<input type="hidden" name="mycontent" th:value="${content.id}">
+			<input type="submit" value="削除">
+			</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

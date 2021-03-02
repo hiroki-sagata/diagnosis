@@ -2,7 +2,7 @@ package com.example.demo;
 
 
 import java.util.List;
-
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +35,8 @@ public class MainController
 UserDataRepository repository;
 @Autowired
 GoodButtonRepository goodRepository;
-
+@Autowired
+ContentDataRepository contentrepository;
 //ーーーーーーーーーデフォルトでDBに登録された状態にできるーーーーーーーーーー
 //@PostConstruct
 //public void init() {
@@ -124,6 +125,16 @@ public ModelAndView form(ModelAndView mv) {
 @RequestMapping("/user")
 public ModelAndView user(ModelAndView mv) {
 	mv.setViewName("user");
+	return mv;
+}
+@RequestMapping("/memory")
+public ModelAndView memory(ModelAndView mv) {
+	mv.setViewName("memory");
+	return mv;
+}
+@RequestMapping("/mypage")
+public ModelAndView mypage(ModelAndView mv) {
+	mv.setViewName("mypage");
 	return mv;
 }
 
@@ -491,10 +502,68 @@ public ModelAndView indexGet(ModelAndView mv) {
 	return mv;
 }
 
+//@RequestMapping(value="/duser",method = RequestMethod.POST)
+//public ModelAndView deleteUser(
+////		@RequestParam("userid")Long id,
+//		ModelAndView mv) {
+////	System.out.println(id);
+////	repository.deleteById(id);
+////	return new ModelAndView("redirect:/index");
+////	return new ModelAndView("redirect:/memory");
+//	mv.setViewName("index");
+//	return mv;
+//}
+//@RequestMapping(value="/duser",method=RequestMethod.POST)
+//public ModelAndView duserDelete(
+////		@RequestParam("userid")Long id,
+//ModelAndView mv) {
+////	System.out.println(id);
+////	repository.deleteById(id);
+//	return new ModelAndView("redirect:/memory");
+//}
+@RequestMapping(value="/duser" , method = RequestMethod.POST)
+public ModelAndView sagata(ModelAndView mv) {
+ return new ModelAndView("redirect:/");
+}
+
 
 //---------------ここまでーーーーーーーーーーーーーーーー
 
 
+
+//---------------1:多の作成ーーーーーーーーーーーーーーーー
+
+
+@RequestMapping(value="/memory", method = RequestMethod.GET)
+public ModelAndView memoryGet(ModelAndView mv) {
+List<ContentData>content = contentrepository.findAll();	
+mv.addObject("contentList",content);
+mv.setViewName("memory");
+return mv;
+}
+@RequestMapping(value="/memory" ,method = RequestMethod.POST)
+public ModelAndView memoryPost(ModelAndView mv,@RequestParam
+("content")String memo,HttpServletRequest httpServletRequest) {
+	
+	String name = httpServletRequest.getRemoteUser();
+	System.out.println(name);
+	UserData user = repository.findByMail(name);
+	ContentData contentdata = new ContentData();
+	System.out.println(user);
+	contentdata.setUser(user);
+	contentdata.setContent(memo);
+	contentrepository.saveAndFlush(contentdata);
+	return new ModelAndView("redirect:/memory");
+}
+@RequestMapping(value="/delete",method=RequestMethod.POST)
+public ModelAndView delete(@RequestParam("contentD")Long id,
+ModelAndView mv) {
+	System.out.println(id);
+	contentrepository.deleteById(id);
+	return new ModelAndView("redirect:/memory");
+}
+
+//---------------1:多の作成ここまでーーーーーーーーーーーーーーーー
 
 //-------参考になった数-------
 
@@ -519,6 +588,43 @@ public ModelAndView pointGet(ModelAndView mv) {
 	mv.setViewName("point");
 	return mv;
 }
+//--------------------mypageの表示--------------------
+
+@RequestMapping(value="mypage",method = RequestMethod.GET)
+	public ModelAndView mypageGet(ModelAndView mv,HttpServletRequest httpServletRequest){
+	String name = httpServletRequest.getRemoteUser();
+	System.out.println(name);
+	UserData user = repository.findByMail(name);	
+	List<ContentData> myContent = contentrepository.findByUser(user);
+	mv.addObject("contentList",myContent);
+	mv.setViewName("mypage");
+	return mv;
+}
+//@RequestMapping(value="mypage",method = RequestMethod.GET)
+//public ModelAndView mypageGet(ModelAndView mv){
+//	List<ContentData>content = contentrepository.findByName();	
+//	mv.addObject("contentList",content);
+//	mv.setViewName("mypage");
+//	return mv;
+//}
+
+
+
+
+
+
+
+
+@RequestMapping(value="/deleteMyContent",method=RequestMethod.POST)
+public ModelAndView deleteMyContent(@RequestParam("mycontent")Long id,
+ModelAndView mv) {
+	contentrepository.deleteById(id);
+	return new ModelAndView("redirect:/mypage");
+}
+
+
+
+
 
 //------------ここからお問合せフォーム------------
 
@@ -560,13 +666,10 @@ public String complete(
     return "complete";
 }
 
+
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-
-//				（↓は後回しで良い）
-//問い合わせフォームでメールが送れていない？
-//送信元の設定メールしてspring　送信するコードをjavaがわでかく（時間がある時に）
-//送信者の元にもメールを飛ばす
+//IDの削除ができない
 
 
 }
