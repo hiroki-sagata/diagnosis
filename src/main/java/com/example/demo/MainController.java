@@ -502,25 +502,6 @@ public ModelAndView indexGet(ModelAndView mv) {
 	return mv;
 }
 
-//@RequestMapping(value="/duser",method = RequestMethod.POST)
-//public ModelAndView deleteUser(
-////		@RequestParam("userid")Long id,
-//		ModelAndView mv) {
-////	System.out.println(id);
-////	repository.deleteById(id);
-////	return new ModelAndView("redirect:/index");
-////	return new ModelAndView("redirect:/memory");
-//	mv.setViewName("index");
-//	return mv;
-//}
-//@RequestMapping(value="/duser",method=RequestMethod.POST)
-//public ModelAndView duserDelete(
-////		@RequestParam("userid")Long id,
-//ModelAndView mv) {
-////	System.out.println(id);
-////	repository.deleteById(id);
-//	return new ModelAndView("redirect:/memory");
-//}
 @RequestMapping(value="/duser" , method = RequestMethod.POST)
 public ModelAndView sagata(ModelAndView mv) {
  return new ModelAndView("redirect:/");
@@ -528,8 +509,6 @@ public ModelAndView sagata(ModelAndView mv) {
 
 
 //---------------ここまでーーーーーーーーーーーーーーーー
-
-
 
 //---------------1:多の作成ーーーーーーーーーーーーーーーー
 
@@ -600,20 +579,6 @@ public ModelAndView pointGet(ModelAndView mv) {
 	mv.setViewName("mypage");
 	return mv;
 }
-//@RequestMapping(value="mypage",method = RequestMethod.GET)
-//public ModelAndView mypageGet(ModelAndView mv){
-//	List<ContentData>content = contentrepository.findByName();	
-//	mv.addObject("contentList",content);
-//	mv.setViewName("mypage");
-//	return mv;
-//}
-
-
-
-
-
-
-
 
 @RequestMapping(value="/deleteMyContent",method=RequestMethod.POST)
 public ModelAndView deleteMyContent(@RequestParam("mycontent")Long id,
@@ -621,9 +586,6 @@ ModelAndView mv) {
 	contentrepository.deleteById(id);
 	return new ModelAndView("redirect:/mypage");
 }
-
-
-
 
 
 //------------ここからお問合せフォーム------------
@@ -638,7 +600,7 @@ public String contact(@ModelAttribute("form") Form ContactForm,
 public String input(@Valid @ModelAttribute("form") Form Form,
 BindingResult bindingResult, Model model, HttpServletRequest request) {
 
-    // エラーがある場合、自画面遷移する
+    // エラーがある場合、自画面遷移する。
     if (bindingResult.hasErrors()) {
         return "contact";
     }
@@ -648,6 +610,7 @@ BindingResult bindingResult, Model model, HttpServletRequest request) {
     return "redirect:/confirm";
     
 }
+
 @RequestMapping("/confirm")
 public String confirm(
         Model model, HttpServletRequest request) {
