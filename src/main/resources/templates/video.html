@@ -234,7 +234,7 @@
 
 <!-- ---------------セキュリティー追加ーーーーーーーーーー -->
 
-<!-- 消したらエラーが消えた -->
+
 
  <form action="#" th:action="@{/}" th:object="${userData}" method="post">
 			<table><!--th:action="@{/video}にするとcontactでエラーが出ない  -->
@@ -251,7 +251,7 @@
 				<tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="text" th:field="*{pass}" /></td>
+					<td><input type="password" th:field="*{pass}" /></td>
 					<td th:if="${#fields.hasErrors('pass')}"th:errors="*{pass}">Pass Error</td>
 				</tr>
 				<tr>

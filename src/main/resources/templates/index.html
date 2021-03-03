@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>顧客情報</title>
@@ -9,7 +9,10 @@
 <body>
 	<!-- ------------------------変更前コード------------------------ -->
 
-
+		<form method="post" th:action="@{/duser}">
+	<!-- 		<input type="hidden" name="userid" th:value="${c.id}"> -->
+			<input type="submit" value="Delete">
+			</form>
 
 
 	<h1>登録者リスト</h1>
@@ -25,7 +28,15 @@
 			<td th:text="${c.name}"></td>
 			<td th:text="${c.mail}"></td>
 			<td>見せられないよ</td>
+			<td>
+			<form method="post" th:action="@{/duser}">
+			<input type="hidden" name="userid" th:value="${c.id}">
+			<input type="submit" value="Delete">
+			</form>
+			</td>
 		</tr>
+			
+		
 	</table>
 	<!-- ------------------------変更前コードここまで------------------------ -->
 
