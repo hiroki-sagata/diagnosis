@@ -29,7 +29,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 @Controller
 public class MainController 
-//implements WebMvcConfigurer    //追加-------------
 {
 @Autowired
 UserDataRepository repository;
@@ -600,7 +599,7 @@ public String contact(@ModelAttribute("form") Form ContactForm,
 public String input(@Valid @ModelAttribute("form") Form Form,
 BindingResult bindingResult, Model model, HttpServletRequest request) {
 
-    // エラーがある場合、自画面遷移する。
+    // エラーがある場合、自画面遷移する
     if (bindingResult.hasErrors()) {
         return "contact";
     }
@@ -628,11 +627,4 @@ public String complete(
     model.addAttribute("form",ContactForm );
     return "complete";
 }
-
-
-//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝出来ていない部分＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
-//IDの削除ができない
-
-
 }
