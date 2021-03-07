@@ -424,7 +424,7 @@ public ModelAndView videoPost(ModelAndView mv,
 }
 
 
-//---------ユーザー登録---------
+//---------ユーザー登録---------=======
 
 @GetMapping("/video")
 public String getVideo(UserData userData) {
